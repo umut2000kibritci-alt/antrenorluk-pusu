@@ -6,7 +6,8 @@ import os
 NTFY_KANAL = "umut_antrenorluk_pusu"
 URL = "https://tvgfbf.gov.tr/duyurular"
 
-def ntfy_bildirim_gonder(mesaj, baslik="🚨 FITNESS DUYURUSU DEĞİŞTİ!"):
+def ntfy_bildirim_gonder(mesaj, baslik="YENI FITNESS DUYURUSU!"):
+    # Başlıklarda Türkçe harf ve emoji kullanmıyoruz ki sistem çökmesin
     requests.post(
         f"https://ntfy.sh/{NTFY_KANAL}",
         data=mesaj.encode('utf-8'),
@@ -19,12 +20,10 @@ def ntfy_bildirim_gonder(mesaj, baslik="🚨 FITNESS DUYURUSU DEĞİŞTİ!"):
 
 def kontrol_et():
     try:
-        # Bot olduğumuzu gizlemek için tarayıcı kimliğini güncelledik
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
         }
         
-        # timeout=10 ekledik: 10 saniyede cevap gelmezse asılı kalmayacak, işlemi kesecek
         cevap = requests.get(URL, headers=headers, verify=False, timeout=10)
         soup = BeautifulSoup(cevap.content, 'html.parser')
         
@@ -39,7 +38,8 @@ def kontrol_et():
         yeni_metin = ilk_duyuru.text.strip()
         
         if not os.path.exists("son_duyuru.txt"):
-            ntfy_bildirim_gonder("Sistem başarıyla kuruldu. Site okunabiliyor, pusu aktif!", baslik="✅ PUSU BAŞLADI")
+            # Emojileri sadece mesaj içeriğine koyduk
+            ntfy_bildirim_gonder("Sistem başarıyla kuruldu. Site okunabiliyor, pusu aktif! ✅", baslik="PUSU BASLADI")
             with open("son_duyuru.txt", "w", encoding="utf-8") as f:
                 f.write(yeni_metin)
             return
@@ -48,7 +48,7 @@ def kontrol_et():
             eski_metin = f.read().strip()
                 
         if yeni_metin != eski_metin:
-            ntfy_bildirim_gonder(f"Sitede değişiklik var!\n\nYeni Yazı: {yeni_metin}\n\nSisteme koş: {URL}")
+            ntfy_bildirim_gonder(f"Sitede değişiklik var! 🚨\n\nYeni Yazı: {yeni_metin}\n\nSisteme koş: {URL}")
             with open("son_duyuru.txt", "w", encoding="utf-8") as f:
                 f.write(yeni_metin)
                 
