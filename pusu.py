@@ -22,7 +22,14 @@ def kontrol_et():
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
         }
 
-        cevap = requests.get(URL, headers=headers, verify=False, timeout=15)
+        cevap = None
+        for deneme in range(3):
+            try:
+                cevap = requests.get(URL, headers=headers, verify=False, timeout=30)
+                break
+            except Exception:
+                if deneme == 2:
+                    raise
         soup = BeautifulSoup(cevap.content, 'html.parser')
 
         linkler = []
