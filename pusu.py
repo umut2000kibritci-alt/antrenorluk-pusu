@@ -69,5 +69,9 @@ def kontrol_et():
 
 if __name__ == "__main__":
     import urllib3
+    import time
     urllib3.disable_warnings()
-    kontrol_et()
+    for tur in range(10):
+        kontrol_et()
+        if tur < 9:
+            time.sleep(30)
