@@ -2,12 +2,10 @@ import requests
 from bs4 import BeautifulSoup
 import os
 
-# KANAL ADINI YİNE KENDİNKİYLE DEĞİŞTİR
 NTFY_KANAL = "umut_antrenorluk_pusu"
 URL = "https://tvgfbf.gov.tr/duyurular"
 
 def ntfy_bildirim_gonder(mesaj, baslik="YENI FITNESS DUYURUSU!"):
-    # Başlıklarda Türkçe harf ve emoji kullanmıyoruz ki sistem çökmesin
     requests.post(
         f"https://ntfy.sh/{NTFY_KANAL}",
         data=mesaj.encode('utf-8'),
@@ -23,39 +21,46 @@ def kontrol_et():
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
         }
-        
-        cevap = requests.get(URL, headers=headers, verify=False, timeout=10)
+
+        cevap = requests.get(URL, headers=headers, verify=False, timeout=15)
         soup = BeautifulSoup(cevap.content, 'html.parser')
-        
-        ilk_duyuru = soup.find('h3')
-        if not ilk_duyuru:
-            ilk_duyuru = soup.find('a')
-            
-        if not ilk_duyuru:
-            print("Sitede metin bulunamadı.")
+
+        linkler = []
+        for a in soup.find_all('a', href=True):
+            if '/duyurular/' in a['href']:
+                linkler.append(a['href'].strip())
+
+        if not linkler:
+            ntfy_bildirim_gonder("Sayfada duyuru linki bulunamadi. Site yapisi degismis olabilir, kontrol et.", baslik="PUSU SORUN")
             return
-            
-        yeni_metin = ilk_duyuru.text.strip()
-        
+
+        yeni_metin = "\n".join(sorted(set(linkler)))
+
         if not os.path.exists("son_duyuru.txt"):
-            # Emojileri sadece mesaj içeriğine koyduk
-            ntfy_bildirim_gonder("Sistem başarıyla kuruldu. Site okunabiliyor, pusu aktif! ✅", baslik="PUSU BASLADI")
+            ntfy_bildirim_gonder("Sistem kuruldu, site okunuyor, pusu aktif!", baslik="PUSU BASLADI")
             with open("son_duyuru.txt", "w", encoding="utf-8") as f:
                 f.write(yeni_metin)
             return
 
         with open("son_duyuru.txt", "r", encoding="utf-8") as f:
             eski_metin = f.read().strip()
-                
-        if yeni_metin != eski_metin:
-            ntfy_bildirim_gonder(f"Sitede değişiklik var! 🚨\n\nYeni Yazı: {yeni_metin}\n\nSisteme koş: {URL}")
+
+        eski_linkler = set(eski_metin.split("\n"))
+        yeni_linkler = set(linkler)
+        eklenenler = yeni_linkler - eski_linkler
+
+        if eklenenler:
+            for link in eklenenler:
+                tam_link = link if link.startswith("http") else "https://tvgfbf.gov.tr" + link
+                ntfy_bildirim_gonder(f"YENI DUYURU VAR!\n\n{tam_link}\n\nHemen bak!")
             with open("son_duyuru.txt", "w", encoding="utf-8") as f:
                 f.write(yeni_metin)
-                
+
     except Exception as e:
-        print(f"Hata oluştu: {e}")
+        ntfy_bildirim_gonder(f"Bot hata verdi: {e}", baslik="PUSU HATA")
+        print(f"Hata: {e}")
 
 if __name__ == "__main__":
     import urllib3
-    urllib3.disable_warnings() 
+    urllib3.disable_warnings()
     kontrol_et()
