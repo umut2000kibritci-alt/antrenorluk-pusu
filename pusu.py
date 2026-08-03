@@ -39,7 +39,8 @@ def kontrol_et():
                 linkler.append(a['href'].strip())
 
         if not linkler:
-            print("Link bulunamadi.")
+            print(f"Link bulunamadi. HTTP kodu: {cevap.status_code}, sayfa boyutu: {len(cevap.content)} byte")
+            print(cevap.text[:500])
             return
 
         yeni_metin = "\n".join(sorted(set(linkler)))
