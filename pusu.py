@@ -43,8 +43,9 @@ def kontrol_et():
             print(cevap.text[:500])
             return
 
+        print(f"OK - {len(set(linkler))} link bulundu")
         yeni_metin = "\n".join(sorted(set(linkler)))
-
+        
         if not os.path.exists("son_duyuru.txt"):
             ntfy_bildirim_gonder("Sistem kuruldu, pusu aktif!", baslik="PUSU BASLADI")
             with open("son_duyuru.txt", "w", encoding="utf-8") as f:
