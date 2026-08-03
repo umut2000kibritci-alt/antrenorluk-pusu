@@ -1,7 +1,7 @@
 import requests
-from bs4 import BeautifulSoup
 import os
 import time
+from playwright.sync_api import sync_playwright
 
 NTFY_KANAL = "umut_antrenorluk_pusu"
 URL = "https://tvgfbf.gov.tr/duyurular"
@@ -9,14 +9,6 @@ URL = "https://tvgfbf.gov.tr/duyurular"
 ardarda_hata = 0
 alarm_verildi = False
 
-oturum = requests.Session()
-oturum.headers.update({
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
-    'Accept-Language': 'tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7',
-    'Referer': 'https://tvgfbf.gov.tr/',
-    'Upgrade-Insecure-Requests': '1',
-})
 
 def ntfy_bildirim_gonder(mesaj, baslik="YENI FITNESS DUYURUSU!"):
     try:
@@ -29,36 +21,35 @@ def ntfy_bildirim_gonder(mesaj, baslik="YENI FITNESS DUYURUSU!"):
     except Exception as e:
         print(f"Bildirim gonderilemedi: {e}")
 
+
 def basarisiz(sebep):
     global ardarda_hata, alarm_verildi
     ardarda_hata += 1
     print(f"BASARISIZ ({ardarda_hata}) - {sebep}")
-    if ardarda_hata >= 10 and not alarm_verildi:
-        ntfy_bildirim_gonder(f"Bot 10 turdur siteyi okuyamiyor: {sebep}", baslik="PUSU KOR KALDI")
+    if ardarda_hata >= 5 and not alarm_verildi:
+        ntfy_bildirim_gonder(f"Bot 5 turdur siteyi okuyamiyor: {sebep}", baslik="PUSU KOR KALDI")
         alarm_verildi = True
 
-def sayfayi_al():
-    for deneme in range(4):
-        cevap = oturum.get(URL, verify=False, timeout=30)
-        if "One moment" not in cevap.text and "just a moment" not in cevap.text.lower():
-            return cevap
-        print(f"  Koruma ekrani, {deneme+1}. deneme, bekliyorum...")
-        time.sleep(7)
-    return cevap
 
-def kontrol_et():
+def linkleri_al(sayfa):
+    sayfa.goto(URL, timeout=60000, wait_until="domcontentloaded")
+    for _ in range(8):
+        baslik = (sayfa.title() or "").lower()
+        if "moment" in baslik:
+            sayfa.wait_for_timeout(5000)
+        else:
+            break
+    hrefler = sayfa.eval_on_selector_all("a[href]", "els => els.map(e => e.getAttribute('href'))")
+    return [h.strip() for h in hrefler if h and '/duyurular/' in h]
+
+
+def kontrol_et(sayfa):
     global ardarda_hata, alarm_verildi
     try:
-        cevap = sayfayi_al()
-        soup = BeautifulSoup(cevap.content, 'html.parser')
-
-        linkler = []
-        for a in soup.find_all('a', href=True):
-            if '/duyurular/' in a['href']:
-                linkler.append(a['href'].strip())
+        linkler = linkleri_al(sayfa)
 
         if not linkler:
-            basarisiz(f"Link yok (HTTP {cevap.status_code}, {len(cevap.content)} byte)")
+            basarisiz("Link yok, koruma ekrani asilamadi")
             return
 
         print(f"OK - {len(set(linkler))} link bulundu")
@@ -88,11 +79,18 @@ def kontrol_et():
     except Exception as e:
         basarisiz(str(e)[:120])
 
+
 if __name__ == "__main__":
-    import urllib3
-    urllib3.disable_warnings()
-    for tur in range(600):
-        print(f"Tur {tur+1} - {time.strftime('%H:%M:%S')}")
-        kontrol_et()
-        if tur < 599:
-            time.sleep(30)
+    with sync_playwright() as p:
+        tarayici = p.chromium.launch(args=["--disable-blink-features=AutomationControlled"])
+        baglam = tarayici.new_context(
+            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+            locale="tr-TR",
+            viewport={"width": 1366, "height": 768},
+        )
+        sayfa = baglam.new_page()
+        for tur in range(600):
+            print(f"Tur {tur+1} - {time.strftime('%H:%M:%S')}")
+            kontrol_et(sayfa)
+            if tur < 599:
+                time.sleep(30)
