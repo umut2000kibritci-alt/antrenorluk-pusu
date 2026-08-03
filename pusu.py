@@ -74,6 +74,7 @@ if __name__ == "__main__":
     import urllib3
     urllib3.disable_warnings()
     for tur in range(600):
+        print(f"Tur {tur+1} - {time.strftime('%H:%M:%S')}")
         kontrol_et()
         if tur < 599:
             time.sleep(30)
