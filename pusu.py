@@ -95,49 +95,4 @@ if __name__ == "__main__":
         print(f"Tur {tur+1} - {time.strftime('%H:%M:%S')}")
         kontrol_et()
         if tur < 599:
-            time.sleep(30)        for a in soup.find_all('a', href=True):
-            if '/duyurular/' in a['href']:
-                linkler.append(a['href'].strip())
-
-        if not linkler:
-            print(f"Link bulunamadi. HTTP kodu: {cevap.status_code}, sayfa boyutu: {len(cevap.content)} byte")
-            print(cevap.text[:500])
-            return
-
-        print(f"OK - {len(set(linkler))} link bulundu")
-        yeni_metin = "\n".join(sorted(set(linkler)))
-        
-        if not os.path.exists("son_duyuru.txt"):
-            ntfy_bildirim_gonder("Sistem kuruldu, pusu aktif!", baslik="PUSU BASLADI")
-            with open("son_duyuru.txt", "w", encoding="utf-8") as f:
-                f.write(yeni_metin)
-            return
-
-        with open("son_duyuru.txt", "r", encoding="utf-8") as f:
-            eski_metin = f.read().strip()
-
-        eklenenler = set(linkler) - set(eski_metin.split("\n"))
-
-        if eklenenler:
-            for link in eklenenler:
-                tam_link = link if link.startswith("http") else "https://tvgfbf.gov.tr" + link
-                ntfy_bildirim_gonder(f"YENI DUYURU VAR!\n\n{tam_link}\n\nHemen bak!")
-            with open("son_duyuru.txt", "w", encoding="utf-8") as f:
-                f.write(yeni_metin)
-
-        hata_bildirildi = False
-
-    except Exception as e:
-        print(f"Hata: {e}")
-        if not hata_bildirildi:
-            ntfy_bildirim_gonder(f"Siteye ulasilamiyor: {e}", baslik="PUSU HATA")
-            hata_bildirildi = True
-
-if __name__ == "__main__":
-    import urllib3
-    urllib3.disable_warnings()
-    for tur in range(600):
-        print(f"Tur {tur+1} - {time.strftime('%H:%M:%S')}")
-        kontrol_et()
-        if tur < 599:
             time.sleep(30)
