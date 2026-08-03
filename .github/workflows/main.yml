@@ -25,7 +25,7 @@ jobs:
         run: pip install requests beautifulsoup4
 
       - name: Pusu Kodunu Çalıştır
-        run: python pusu.py
+        run: python -u pusu.py
 
       - name: Değişiklikleri Kaydet
         if: always()
