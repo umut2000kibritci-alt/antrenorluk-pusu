@@ -255,23 +255,28 @@
    "baslik": "ANKARA 2./3. KADEME Antrenör Kurs Duyurusu (Yüz Yüze) (16 Temmuz 2026)",
    "ilk": "2026-09-28T17:03:25+03:00",
    "sayfa": "Duyurular"
+  },
+  "baslik:FEDERASYON BİLGİ SİSTEMİ": {
+   "baslik": "FEDERASYON BİLGİ SİSTEMİ",
+   "ilk": "2026-09-29T00:06:49+03:00",
+   "sayfa": "Anasayfa"
   }
  },
  "sayfalar": {
   "Duyurular": {
    "baz_alindi": true,
    "kor": false,
-   "son_basari": "2026-09-29T00:05:53+03:00"
+   "son_basari": "2026-09-29T00:06:38+03:00"
   },
   "Kurslar": {
    "baz_alindi": true,
    "kor": false,
-   "son_basari": "2026-09-29T00:05:56+03:00"
+   "son_basari": "2026-09-29T00:06:43+03:00"
   },
   "Anasayfa": {
    "baz_alindi": true,
    "kor": false,
-   "son_basari": "2026-09-29T00:06:01+03:00"
+   "son_basari": "2026-09-29T00:06:49+03:00"
   }
  },
  "son_rapor": "2026-09-28",
