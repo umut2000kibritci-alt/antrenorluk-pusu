@@ -2,12 +2,12 @@
  "surum": 2,
  "gorulen": {
   "https://tvgfbf.gov.tr/duyurular/yeterlilik-belgesi-i-slemleri-nasil-yapilir": {
-   "baslik": "İSTANBUL 1./2. KADEME Antrenör Kurs Duyurusu (Yüz Yüze)",
+   "baslik": "Salon Yeterlilik İşlemleri Yeterlilik belgesi adım adım",
    "ilk": "2026-09-28T16:33:59+03:00",
    "sayfa": "Duyurular"
   },
   "https://tvgfbf.gov.tr/seminerler/2026-antrenor-vize-gelisim-semineri": {
-   "baslik": "2026 Antrenör Vize Gelişim Semineri",
+   "baslik": "2026 Antrenör Vize Gelişim Semineri (31 Ocak 2026)",
    "ilk": "2026-09-28T16:34:02+03:00",
    "sayfa": "Kurslar"
   },
@@ -22,23 +22,183 @@
    "sayfa": "Kurslar"
   },
   "https://tvgfbf.gov.tr/etkinlikler/09-11-mayis-2025-yili-turkiye-cocuk-fitness-sampiyonasi": {
-   "baslik": "09-11 MAYIS 2025 YILI TÜRKİYE ÇOCUK FITNESS ŞAMPİYONASI KUŞADASI, AYDIN ÇOCUK FITNESS RESMİ SONUÇLARI",
+   "baslik": "09-11 MAYIS 2025 YILI TÜRKİYE ÇOCUK FITNESS ŞAMPİYONASI KUŞADASI, AYDIN ÇOCUK FITNESS RESMİ SONUÇLARI (9 Mayıs 2025)",
    "ilk": "2026-09-28T16:34:05+03:00",
    "sayfa": "Anasayfa"
   },
   "https://tvgfbf.gov.tr/etkinlikler/7-12-nisan-2025-turkiye-bilek-guresi-avrupa-sampiyonasi": {
-   "baslik": "7-12 Nisan 2025 Türkiye Bilek Güreşi Avrupa Şampiyonası Milli Takım Seçmeleri Sonuçları Yayınlandı. – Türkiye Vücut Geliştirme Fitness Ve Bilek Güreşi Federasyo",
+   "baslik": "7-12 Nisan 2025 Türkiye Bilek Güreşi Avrupa Şampiyonası Milli Takım Seçmeleri Sonuçları Yayınlandı. – Türkiye Vücut Geliştirme Fitness Ve Bilek Güreşi Federasyonu (7 Nisan 2025)",
    "ilk": "2026-09-28T16:34:05+03:00",
    "sayfa": "Anasayfa"
   },
   "https://tvgfbf.gov.tr/etkinlikler/03-06-nisan-2025-turkiye-ahmet-enunlu-vucut-gelistirme": {
-   "baslik": "03-06 NİSAN 2025 TÜRKİYE AHMET ENÜNLÜ VÜCUT GELİŞTİRME FİTNESS ŞAMPİYONASI VE AVRUPA MİLLİ TAKIM SEÇMELERİ SONUÇLARI",
+   "baslik": "03-06 NİSAN 2025 TÜRKİYE AHMET ENÜNLÜ VÜCUT GELİŞTİRME FİTNESS ŞAMPİYONASI VE AVRUPA MİLLİ TAKIM SEÇMELERİ SONUÇLARI (3 Ocak 2025)",
    "ilk": "2026-09-28T16:34:05+03:00",
    "sayfa": "Anasayfa"
   },
   "https://tvgfbf.gov.tr/etkinlikler/06-09-mart-2024-avrupa-sampiyonasi-milli-takim": {
-   "baslik": "06-09 MART 2024 AVRUPA ŞAMPİYONASI MİLLİ TAKIM SEÇMELERİ YARIŞMA SONUÇLARI",
+   "baslik": "06-09 MART 2024 AVRUPA ŞAMPİYONASI MİLLİ TAKIM SEÇMELERİ YARIŞMA SONUÇLARI (6 Mart 2024)",
    "ilk": "2026-09-28T16:34:05+03:00",
+   "sayfa": "Anasayfa"
+  },
+  "https://tvgfbf.gov.tr/duyurular/i-stanbul-1-2-kademe-antrenor-kurs-duyurusu-yuz-yuze-yuz-yuze": {
+   "baslik": "İSTANBUL 1./2. KADEME Antrenör Kurs Duyurusu (Yüz Yüze) (23 EYLÜL 2026)",
+   "ilk": "2026-09-28T16:59:09+03:00",
+   "sayfa": "Duyurular"
+  },
+  "baslik:DUYURULAR": {
+   "baslik": "DUYURULAR",
+   "ilk": "2026-09-28T16:59:09+03:00",
+   "sayfa": "Duyurular"
+  },
+  "https://tvgfbf.gov.tr/duyurular/canli-yayindayiz": {
+   "baslik": "CANLI YAYINDAYIZ (23 EYLÜL 2026)",
+   "ilk": "2026-09-28T16:59:09+03:00",
+   "sayfa": "Duyurular"
+  },
+  "https://tvgfbf.gov.tr/duyurular/18-09-2026-noter-huzurunda-delege-beli-rge-kura-ceki-mi-noter": {
+   "baslik": "18.09.2026 NOTER HUZURUNDA DELEGE BELİRGE KURA ÇEKİMİ NOTER TUTANAĞI (22 EYLÜL 2026)",
+   "ilk": "2026-09-28T16:59:09+03:00",
+   "sayfa": "Duyurular"
+  },
+  "https://tvgfbf.gov.tr/duyurular/kamuoyuna-resmi-uyari": {
+   "baslik": "Kamuoyuna Resmi Uyarı (19 EYLÜL 2026)",
+   "ilk": "2026-09-28T16:59:09+03:00",
+   "sayfa": "Duyurular"
+  },
+  "https://tvgfbf.gov.tr/duyurular/i-tirazlar-sonrasi-noter-huzurunda-kura-cekimine-katilacak": {
+   "baslik": "İtirazlar Sonrası Noter Huzurunda Kura Çekimine Katılacak Kulüpler, Faal Olmayan Millî Sporcular ve Faal Olmayan Hakemler Listesi (16 EYLÜL 2026)",
+   "ilk": "2026-09-28T16:59:09+03:00",
+   "sayfa": "Duyurular"
+  },
+  "https://tvgfbf.gov.tr/duyurular/ankara-2-kademe-antrenor-kurs-duyurusu-yuz-yuze-yuz-yuz": {
+   "baslik": "ANKARA 2. KADEME Antrenör Kurs Duyurusu (Yüz Yüze) (14 Eylül 2026)",
+   "ilk": "2026-09-28T16:59:09+03:00",
+   "sayfa": "Duyurular"
+  },
+  "https://tvgfbf.gov.tr/duyurular/ankara-1-kademe-antrenor-kurs-duyurusu-1-grup-2-grup-yuz-yuze": {
+   "baslik": "ANKARA 1.KADEME Antrenör Kurs Duyurusu(1.GRUP- 2.GRUP) (14 Eylül 2026)",
+   "ilk": "2026-09-28T16:59:09+03:00",
+   "sayfa": "Duyurular"
+  },
+  "https://tvgfbf.gov.tr/duyurular/bursa-1-2-kademe-antrenor-kurs-duyurusu-yuz-yuze-yuz-yuze": {
+   "baslik": "BURSA 1./2. KADEME Antrenör Kurs Duyurusu (Yüz Yüze) (14 Eylül 2026)",
+   "ilk": "2026-09-28T16:59:09+03:00",
+   "sayfa": "Duyurular"
+  },
+  "https://tvgfbf.gov.tr/duyurular/karaman-1-2-kademe-antrenor-kurs-duyurusu-yuz-yuze": {
+   "baslik": "KARAMAN 1./2. KADEME Antrenör Kurs Duyurusu (Yüz Yüze) (14 Eylül 2026)",
+   "ilk": "2026-09-28T16:59:09+03:00",
+   "sayfa": "Duyurular"
+  },
+  "https://tvgfbf.gov.tr/duyurular/turki-ye-vucut-geli-sti-rme-fitness-federasyonu-7-mali-kurul": {
+   "baslik": "TÜRKİYE VÜCUT GELİŞTİRME FITNESS FEDERASYONU 7. MALİ KURUL DUYURUSU (10 Eylül 2026)",
+   "ilk": "2026-09-28T16:59:09+03:00",
+   "sayfa": "Duyurular"
+  },
+  "https://tvgfbf.gov.tr/duyurular/i-zmi-r-1-2-kademe-antrenor-kurs-duyurusu-yuz-yuze-yuz-yuz": {
+   "baslik": "İZMİR 1./2. KADEME Antrenör Kurs Duyurusu (Yüz Yüze) (10 Eylül 2026)",
+   "ilk": "2026-09-28T16:59:09+03:00",
+   "sayfa": "Duyurular"
+  },
+  "https://tvgfbf.gov.tr/duyurular/turki-ye-vucut-geli-sti-rme-ve-fi-tness-sampi-yonasi-ve-dunya": {
+   "baslik": "TÜRKİYE VÜCUT GELİŞTİRME VE FİTNESS ŞAMPİYONASI VE DÜNYA ŞAMPİYONASI MİLLİ TAKIM SEÇMESİ SONUÇLARI (2 Eylül 2026)",
+   "ilk": "2026-09-28T16:59:09+03:00",
+   "sayfa": "Duyurular"
+  },
+  "https://tvgfbf.gov.tr/duyurular/tarti-ve-kayit-oncesi-tarti-esnasi-ve-tarti-sonrasinda": {
+   "baslik": "TARTI ve KAYIT ÖNCESİ, TARTI ESNASI VE TARTI SONRASINDA YAPILMASI GEREKENLER (25 Ağustos 2026)",
+   "ilk": "2026-09-28T16:59:09+03:00",
+   "sayfa": "Duyurular"
+  },
+  "https://tvgfbf.gov.tr/duyurular/ifbb-world-fitness-sport-games-2026-yarisma-reglamani": {
+   "baslik": "IFBB WORLD FITNESS SPORT GAMES 2026 YARIŞMA REGLAMANI (24 Ağustos 2026)",
+   "ilk": "2026-09-28T16:59:09+03:00",
+   "sayfa": "Duyurular"
+  },
+  "https://tvgfbf.gov.tr/duyurular/yarisma-programinda-bazi-kategori-lerde-tari-h-degi-si-kli-gi": {
+   "baslik": "YARIŞMA PROGRAMINDA BAZI KATEGORİLERDE TARİH DEĞİŞİKLİĞİ DUYURUSU ( REGLAMAN ) (20 Ağustos 2026)",
+   "ilk": "2026-09-28T16:59:09+03:00",
+   "sayfa": "Duyurular"
+  },
+  "https://tvgfbf.gov.tr/duyurular/antenor-geli-si-m-semi-neri-30-08-2026-i-stanbul-fitness-week": {
+   "baslik": "ANTENÖR GELİŞİM SEMİNERİ 30.08.2026 (İSTANBUL FITNESS WEEK) (YÜZ YÜZE) (19 Ağustos 2026)",
+   "ilk": "2026-09-28T16:59:09+03:00",
+   "sayfa": "Duyurular"
+  },
+  "https://tvgfbf.gov.tr/duyurular/ankara-2-kademe-antrenor-kurs-duyurusu-yuz-yuze-yuz-yuze-yuz": {
+   "baslik": "ANKARA 2. KADEME Antrenör Kurs Duyurusu (Yüz Yüze) (18 Ağustos 2026)",
+   "ilk": "2026-09-28T16:59:09+03:00",
+   "sayfa": "Duyurular"
+  },
+  "https://tvgfbf.gov.tr/duyurular/ankara-1-kademe-antrenor-kurs-duyurusu-1-grup-2-grup": {
+   "baslik": "ANKARA 1.KADEME Antrenör Kurs Duyurusu(1.GRUP- 2.GRUP) (18 Ağustos 2026)",
+   "ilk": "2026-09-28T16:59:09+03:00",
+   "sayfa": "Duyurular"
+  },
+  "https://tvgfbf.gov.tr/duyurular/onli-ne-vucut-geli-sti-rme-ve-fi-tness-antrenor-vi-ze-semi-neri-ri": {
+   "baslik": "ONLİNE VÜCUT GELİŞTİRME ve FİTNESS ANTRENÖR VİZE SEMİNERİ (18 Ağustos 2026)",
+   "ilk": "2026-09-28T16:59:09+03:00",
+   "sayfa": "Duyurular"
+  },
+  "https://tvgfbf.gov.tr/duyurular/2026-online-antrenor-gelisim-semineri": {
+   "baslik": "2026 ONLINE Antrenör Gelişim Semineri (17 Ağustos 2026)",
+   "ilk": "2026-09-28T16:59:09+03:00",
+   "sayfa": "Duyurular"
+  },
+  "https://tvgfbf.gov.tr/duyurular/ankara1-kademe-antrenor-kurs-duyurusu-1-grup-2-grup": {
+   "baslik": "ANKARA1.KADEME Antrenör Kurs Duyurusu(1.GRUP- 2.GRUP) (10 Ağustos 2026)",
+   "ilk": "2026-09-28T16:59:09+03:00",
+   "sayfa": "Duyurular"
+  },
+  "https://tvgfbf.gov.tr/duyurular/mersi-n-1-2-kademe-antrenor-kurs-duyurusu-yuz-yuze": {
+   "baslik": "MERSİN 1./2. KADEME Antrenör Kurs Duyurusu (Yüz Yüze) (10 Ağustos 2026)",
+   "ilk": "2026-09-28T16:59:09+03:00",
+   "sayfa": "Duyurular"
+  },
+  "https://tvgfbf.gov.tr/duyurular/sakarya-1-2-kademe-antrenor-kurs-duyurusu-yuz-yuze": {
+   "baslik": "SAKARYA 1./2. KADEME Antrenör Kurs Duyurusu (Yüz Yüze) (10 Ağustos 2026)",
+   "ilk": "2026-09-28T16:59:09+03:00",
+   "sayfa": "Duyurular"
+  },
+  "https://tvgfbf.gov.tr/duyurular/canakkale-2-kademe-antrenor-kurs-duyurusu-yuz-yuze": {
+   "baslik": "ÇANAKKALE 2. KADEME Antrenör Kurs Duyurusu (Yüz Yüze) (31 Temmuz 2026)",
+   "ilk": "2026-09-28T16:59:09+03:00",
+   "sayfa": "Duyurular"
+  },
+  "baslik:KURS VE SEMİNERLER": {
+   "baslik": "KURS VE SEMİNERLER",
+   "ilk": "2026-09-28T16:59:12+03:00",
+   "sayfa": "Kurslar"
+  },
+  "baslik:FAALİYETLER VE KURSLAR": {
+   "baslik": "FAALİYETLER VE KURSLAR",
+   "ilk": "2026-09-28T16:59:15+03:00",
+   "sayfa": "Anasayfa"
+  },
+  "baslik:TVGFBF ARTI +": {
+   "baslik": "TVGFBF ARTI +",
+   "ilk": "2026-09-28T16:59:15+03:00",
+   "sayfa": "Anasayfa"
+  },
+  "baslik:E-TVGFBF İLE TANIŞIN!": {
+   "baslik": "E-TVGFBF İLE TANIŞIN!",
+   "ilk": "2026-09-28T16:59:15+03:00",
+   "sayfa": "Anasayfa"
+  },
+  "baslik:Temel Antrenörlük": {
+   "baslik": "Temel Antrenörlük",
+   "ilk": "2026-09-28T16:59:15+03:00",
+   "sayfa": "Anasayfa"
+  },
+  "baslik:Kurs Seminer Duyuruları": {
+   "baslik": "Kurs Seminer Duyuruları",
+   "ilk": "2026-09-28T16:59:15+03:00",
+   "sayfa": "Anasayfa"
+  },
+  "baslik:Kurs / Seminer Ödemeleri": {
+   "baslik": "Kurs / Seminer Ödemeleri",
+   "ilk": "2026-09-28T16:59:15+03:00",
    "sayfa": "Anasayfa"
   }
  },
@@ -46,19 +206,20 @@
   "Duyurular": {
    "baz_alindi": true,
    "kor": false,
-   "son_basari": "2026-09-28T16:57:56+03:00"
+   "son_basari": "2026-09-28T16:59:09+03:00"
   },
   "Kurslar": {
    "baz_alindi": true,
    "kor": false,
-   "son_basari": "2026-09-28T16:57:58+03:00"
+   "son_basari": "2026-09-28T16:59:12+03:00"
   },
   "Anasayfa": {
    "baz_alindi": true,
    "kor": false,
-   "son_basari": "2026-09-28T16:58:01+03:00"
+   "son_basari": "2026-09-28T16:59:15+03:00"
   }
  },
  "son_rapor": "2026-09-28",
- "kurulum_bildirildi": 3
+ "kurulum_bildirildi": 4,
+ "yapi_surumu": 3
 }
