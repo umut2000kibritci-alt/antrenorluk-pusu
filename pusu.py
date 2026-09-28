@@ -501,4 +501,79 @@ class Pusu:
                     log(f"{ad}: {e} → bu sayfa sitede yok, bu çalışmada atlanıyor")
                     self.devre_disi.add(ad)
                 continue
-                                                            
+            except Exception as e:
+                sebep = str(e).strip().splitlines()[0][:150] if str(e).strip() else type(e).__name__
+                degisti |= self.basarisiz(ad, sebep)
+                self.son_sonuc[ad] = False
+                ozet.append(f"{ad}: HATA")
+                n = self.hata_sayisi[ad]
+                if not sayfa.is_closed() and (n in (1, 5) or n % 25 == 0):
+                    debug_kaydet(sayfa, ad, "hata")
+                continue
+
+            self.son_sonuc[ad] = True
+            self.son_ogeler[ad] = ogeler
+            ozet.append(f"{ad}: {len(ogeler)}" + (" (yedek mod)" if mod == "yedek" else ""))
+            if ad not in self.ilk_okuma_yapildi:
+                self.ilk_okuma_yapildi.add(ad)
+                log(f"{ad} okundu ({mod} modu), bulunanlar:")
+                for k, v in list(ogeler.items())[:15]:
+                    log(f"   • {v[:70]}  →  {k}")
+                debug_kaydet(sayfa, ad, "ok")
+            degisti |= self.basarili(ad)
+            degisti |= self.isle(ad, url, ogeler)
+
+        self.uyarilari_gonder()
+        degisti |= self.kurulum_bildir()
+        degisti |= self.gunluk_rapor()
+        if degisti:
+            durum_kaydet(self.durum)
+        return ozet
+
+    # ── ana döngü ──
+    def calis(self):
+        baslangic = time.monotonic()
+        with sync_playwright() as p:
+            tarayici, baglam = tarayici_ac(p)
+            sayfa = baglam.new_page()
+            tur_no, tam_hata = 0, 0
+            try:
+                while time.monotonic() - baslangic < MAKS_CALISMA_SN:
+                    tur_no += 1
+                    t0 = time.monotonic()
+                    ozet = self.tur(sayfa)
+                    log(f"Tur {tur_no} | " + " | ".join(ozet) + f" | {time.monotonic() - t0:.0f} sn")
+
+                    tam_hata = tam_hata + 1 if ozet and all("HATA" in x for x in ozet) else 0
+                    if tam_hata and tam_hata % 3 == 0:
+                        log("Üst üste tam başarısız tur, tarayıcı sıfırlanıyor")
+                        try:
+                            tarayici.close()
+                        except Exception:
+                            pass
+                        tarayici, baglam = tarayici_ac(p)
+                        sayfa = baglam.new_page()
+                    elif sayfa.is_closed():
+                        sayfa = baglam.new_page()
+
+                    time.sleep(max(5, TUR_ARALIGI_SN - (time.monotonic() - t0)))
+                log("Maksimum çalışma süresi doldu, temiz kapanış")
+            finally:
+                durum_yaz(self.durum)
+                try:
+                    tarayici.close()
+                except Exception:
+                    pass
+
+
+def _durdur(signum, frame):
+    raise KeyboardInterrupt
+
+
+if __name__ == "__main__":
+    signal.signal(signal.SIGTERM, _durdur)
+    log(f"PUSU v2 başlıyor | kanal: {NTFY_KANAL} | sayfalar: {', '.join(SAYFALAR)}")
+    try:
+        Pusu().calis()
+    except KeyboardInterrupt:
+        log("Durduruldu (yeni çalışma devraldı), hafıza kaydedildi")
