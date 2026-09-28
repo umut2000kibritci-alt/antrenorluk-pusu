@@ -377,7 +377,10 @@ def sayfa_oku(sayfa, url):
     if not ogeler:
         raise RuntimeError(f"İçerik bulunamadı (HTTP {kod}, sayfa başlığı: {(sayfa.title() or '-')[:50]})")
     duyuru_sayisi = sum(1 for k in ogeler if not k.startswith("baslik:"))
-    return ogeler, ("kart" if duyuru_sayisi else "yedek")
+    if duyuru_sayisi:
+        # Gerçek kartlar varsa başlık yedeği gürültüdür (slayt, tanıtım, sponsor başlıkları)
+        return {k: v for k, v in ogeler.items() if not k.startswith("baslik:")}, "kart"
+    return ogeler, "yedek"
 
 
 def debug_kaydet(sayfa, ad, etiket):
