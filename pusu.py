@@ -43,6 +43,8 @@ TUR_ARALIGI_SN = 45                    # iki tur başlangıcı arası
 MAKS_CALISMA_SN = 5 * 3600 + 40 * 60   # GitHub 6 saat sınırının altında kal
 KOR_DAKIKA = 15                        # bir sayfa bu kadar dk kesintisiz okunamazsa alarm
 KOR_HATIRLATMA_SAAT = 6                # kör kalmaya devam ederse hatırlatma aralığı
+ESKI_GUN = 10                          # bundan eski tarihli kartlar "yeni" sayılmaz (sayfa kayması)
+OK_GORUNTU = False                     # True: her çalışmada sağlıklı sayfanın da görüntüsünü al
 TOPLU_ESIK = 6                         # aynı anda bundan fazla yeni kayıt = site yapısı değişti
 GUNLUK_RAPOR_SAATI = 9                 # her sabah bu saatten sonra "nöbetteyim" mesajı
 KAYNAK_ENGELLE = True                  # resim/font/video indirme (hız)
@@ -180,6 +182,25 @@ def slug_baslik(link):
 
 
 TARIH_EKI = re.compile(r"\s\((\d{1,2} \S+ \d{4}|\d{4}-\d{2}-\d{2})\)$")
+
+
+AYLAR = {"ocak": 1, "subat": 2, "mart": 3, "nisan": 4, "mayis": 5, "haziran": 6, "temmuz": 7,
+         "agustos": 8, "eylul": 9, "ekim": 10, "kasim": 11, "aralik": 12}
+
+
+def tarih_coz(baslik):
+    """Başlığın sonundaki '(23 Eylül 2026)' ya da '(2026-09-23)' ekini tarihe çevirir."""
+    m = TARIH_EKI.search(baslik or "")
+    if not m:
+        return None
+    metin = m.group(1)
+    try:
+        if "-" in metin:
+            return datetime.strptime(metin, "%Y-%m-%d").date()
+        gun, ay, yil = metin.split()
+        return datetime(int(yil), AYLAR[ascii_katla(ay)], int(gun)).date()
+    except Exception:
+        return None
 
 
 def saf(baslik):
@@ -409,6 +430,15 @@ class Pusu:
         if not yeniler:
             return guncellendi
 
+        sinir = simdi().date().toordinal() - ESKI_GUN
+        eskiler = {k: v for k, v in yeniler.items() if tarih_coz(v) and tarih_coz(v).toordinal() < sinir}
+        for k, v in eskiler.items():
+            gorulen[k] = {"baslik": v, "ilk": zaman, "sayfa": ad}
+            log(f"{ad}: eski tarihli kart sessizce eklendi: {v[:80]}")
+        yeniler = {k: v for k, v in yeniler.items() if k not in eskiler}
+        if not yeniler:
+            return True
+
         if len(yeniler) > TOPLU_ESIK:
             ozet = "\n".join(f"• {v or k}" for k, v in list(yeniler.items())[:5])
             bildirim(f"{ad} sayfasında aynı anda {len(yeniler)} yeni kayıt çıktı. Site yapısı değişmiş "
@@ -550,7 +580,8 @@ class Pusu:
                 log(f"{ad} okundu ({mod} modu), bulunanlar:")
                 for k, v in list(ogeler.items())[:30]:
                     log(f"   • {v[:70]}  →  {k}")
-                debug_kaydet(sayfa, ad, "ok")
+                if OK_GORUNTU:
+                    debug_kaydet(sayfa, ad, "ok")
             degisti |= self.basarili(ad)
             degisti |= self.isle(ad, url, ogeler)
 
