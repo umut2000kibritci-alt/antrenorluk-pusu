@@ -2,37 +2,59 @@ name: Pusu Sistemi
 
 on:
   schedule:
-    - cron: '0 */3 * * *'
+    - cron: '0 */3 * * *'   # yedek tetik; asıl tetik cron-job.org (30 dk)
   workflow_dispatch:
+
+permissions:
+  contents: write           # durum.json'ı repoya kaydedebilmek için
 
 concurrency:
   group: pusu
-  cancel-in-progress: true
+  cancel-in-progress: true  # yeni çalışma gelince eskisi kapanır (her seferinde temiz IP)
 
 jobs:
-  build:
+  pusu:
     runs-on: ubuntu-latest
     timeout-minutes: 350
+    env:
+      NTFY_KANAL: ${{ secrets.NTFY_KANAL }}   # secret yoksa koddaki varsayılan kanal kullanılır
+      PYTHONUNBUFFERED: "1"
     steps:
       - uses: actions/checkout@v5
 
       - name: Python Kur
         uses: actions/setup-python@v6
         with:
-          python-version: '3.10'
+          python-version: '3.12'
 
       - name: Kütüphaneleri Yükle
         run: |
-          pip install requests playwright
-          playwright install --with-deps chromium
+          pip install --upgrade requests playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Git Ayarı
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
 
       - name: Pusu Kodunu Çalıştır
         run: python -u pusu.py
 
-      - name: Değişiklikleri Kaydet
+      - name: Hafızayı Kaydet
         if: always()
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add son_duyuru.txt || true
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Duyuru güncellendi" && git push)
+          git add durum.json 2>/dev/null || true
+          if ! git diff --staged --quiet; then
+            git commit -m "Pusu hafızası (kapanış)"
+            git pull --rebase -X theirs origin "${GITHUB_REF_NAME}" || git rebase --abort
+            git push origin "HEAD:${GITHUB_REF_NAME}" || true
+          fi
+
+      - name: Ekran Görüntülerini Yükle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pusu-debug-${{ github.run_number }}
+          path: debug/
+          retention-days: 3
+          if-no-files-found: ignore
