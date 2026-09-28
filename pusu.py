@@ -47,7 +47,8 @@ TOPLU_ESIK = 6                         # aynı anda bundan fazla yeni kayıt = s
 GUNLUK_RAPOR_SAATI = 9                 # her sabah bu saatten sonra "nöbetteyim" mesajı
 KAYNAK_ENGELLE = True                  # resim/font/video indirme (hız)
 MAKS_KAYIT = 3000
-KURULUM_SURUMU = 3  # değişince "AKTİF" mesajı bir kez tekrar gelir
+KURULUM_SURUMU = 4  # değişince "AKTİF" mesajı bir kez tekrar gelir
+YAPI_SURUMU = 3     # okuma yöntemi değişince tüm sayfalar sessizce yeniden baz alınır
 
 DURUM_DOSYASI = Path("durum.json")
 DEBUG = Path("debug")
@@ -59,60 +60,67 @@ DESEN = (rf"^https?://(www\.)?{re.escape(ALAN_ADI)}/"
          rf"[^/?#]*({'|'.join(KOKLER)})[^/?#]*/[^/?#]+")
 
 # ══════════════════════════════ JS ══════════════════════════════
-JS_SAY = """(desen) => {
+# Sitenin yeni yapısı: duyurular <a> link değil, tıklanınca açılan <button> kartlar.
+# Kartın kimliği kapak resmi yolunda: /public/announcement/<slug>/kapak/...
+# Detay sayfası: /duyurular/<slug>
+JS_ORTAK = r"""
   const re = new RegExp(desen, 'i');
-  let n = 0;
-  for (const a of document.querySelectorAll('a[href]')) if (re.test(a.href)) n++;
-  return n;
-}"""
-
-JS_HAZIR = """(desen) => {
-  const re = new RegExp(desen, 'i');
-  for (const a of document.querySelectorAll('a[href]')) if (re.test(a.href)) return true;
-  return false;
-}"""
-
-JS_TOPLA = r"""(desen) => {
-  const re = new RegExp(desen, 'i');
+  const SLUG_RE = /\/public\/(?:announcement|announcements|duyuru|duyurular)\/([^\/?#]+)\//i;
   const temiz = s => (s || '').replace(/\s+/g, ' ').trim();
-  const BASLIK = 'h1,h2,h3,h4,h5,h6,[class*="title"],[class*="Title"],[class*="baslik"],[class*="heading"]';
-  const tarihMi = t => /^\d{1,4}[.\-\/ ]\d{1,2}[.\-\/ ]\d{1,4}/.test(t) || /^\d+ (ocak|şubat|mart|nisan|mayıs|haziran|temmuz|ağustos|eylül|ekim|kasım|aralık)/i.test(t);
-
-  // Linkin kartını bul: yukarı çık, başka bir duyuru linki içermeyen en geniş kutu
-  const kartBul = a => {
-    const kendi = a.href.split('#')[0];
-    let kart = a, el = a;
-    for (let i = 0; i < 7 && el.parentElement; i++) {
+  const BAS = 'h1,h2,h3,h4';
+  const disarida = el => el.closest('header, footer, nav');
+  // Başlığın kartını bul: yukarı çık, içinde başka başlık olmayan en geniş kutu
+  const kartBul = h => {
+    let kart = h, el = h;
+    for (let i = 0; i < 8 && el.parentElement && el.parentElement !== document.body; i++) {
       el = el.parentElement;
-      const baska = [...el.querySelectorAll('a[href]')].some(x => re.test(x.href) && x.href.split('#')[0] !== kendi);
-      if (baska) break;
+      if (el.querySelectorAll(BAS).length > 1) break;
       kart = el;
     }
     return kart;
   };
+"""
 
-  const linkler = [];
+JS_SAY = """(desen) => {""" + JS_ORTAK + """
+  let n = 0;
+  for (const a of document.querySelectorAll('a[href]')) if (re.test(a.href)) n++;
+  for (const h of document.querySelectorAll(BAS)) if (!disarida(h) && temiz(h.innerText).length >= 5) n++;
+  return n;
+}"""
+
+JS_HAZIR = """(desen) => {""" + JS_ORTAK + """
+  for (const h of document.querySelectorAll('button ' + BAS.split(',').join(', button ') + ', article h3, a h3'))
+    if (temiz(h.innerText).length >= 5) return true;
+  return false;
+}"""
+
+JS_TOPLA = """(desen) => {""" + JS_ORTAK + r"""
+  const kartlar = [];
+  // A) Başlık içeren kartlar (buton, link, div fark etmez)
+  for (const h of document.querySelectorAll(BAS)) {
+    if (disarida(h)) continue;
+    const baslik = temiz(h.innerText);
+    if (baslik.length < 5) continue;
+    const kart = kartBul(h);
+    let slug = '', link = '';
+    for (const img of kart.querySelectorAll('img[src], [style*="url("]')) {
+      const kaynak = img.getAttribute('src') || img.getAttribute('style') || '';
+      const m = kaynak.match(SLUG_RE);
+      if (m) { slug = decodeURIComponent(m[1]); break; }
+    }
+    const a = [kart, ...kart.querySelectorAll('a[href]')].find(x => x.href && re.test(x.href)) || kart.closest('a[href]');
+    if (a && re.test(a.href)) link = a.href;
+    const tarihEl = [...kart.querySelectorAll('p, span, time, small')].map(x => temiz(x.innerText))
+      .find(t => /^\d{1,2} [A-Za-zÇĞİÖŞÜçğıöşü]+ \d{4}$/.test(t) || /^\d{4}-\d{2}-\d{2}$/.test(t));
+    kartlar.push({baslik, slug, link, tarih: tarihEl || ''});
+  }
+  // B) Kart dışında kalan düz duyuru linkleri (Kurslar sayfası gibi)
   for (const a of document.querySelectorAll('a[href]')) {
-    if (!re.test(a.href)) { linkler.push({href: a.href, metin: ''}); continue; }
-    const kart = kartBul(a);
-    const aday = [];
-    for (const h of [...a.querySelectorAll(BASLIK), ...kart.querySelectorAll(BASLIK)]) aday.push(temiz(h.innerText));
-    aday.push(temiz(a.getAttribute('title')), temiz(a.getAttribute('aria-label')));
-    const img = a.querySelector('img[alt]'); if (img) aday.push(temiz(img.alt));
-    for (const satir of (kart.innerText || '').split('\n')) aday.push(temiz(satir));
-    aday.push(temiz(a.innerText));
-    const iyi = aday.find(t => t.length >= 15 && t.length <= 250 && !tarihMi(t));
-    linkler.push({href: a.href, metin: iyi || aday.filter(Boolean).sort((x, y) => y.length - x.length)[0] || ''});
+    if (disarida(a) || !re.test(a.href)) continue;
+    const h = a.querySelector(BAS);
+    kartlar.push({baslik: temiz(h ? h.innerText : a.innerText).slice(0, 200), slug: '', link: a.href, tarih: ''});
   }
-
-  const basliklar = [];
-  const kok = document.querySelector('main') || document.body;
-  if (kok) for (const h of kok.querySelectorAll('h2,h3,h4,h5')) {
-    if (h.closest('header, footer, nav, aside')) continue;
-    const t = temiz(h.innerText);
-    if (t.length >= 12) basliklar.push(t);
-  }
-  return {linkler, basliklar};
+  return kartlar;
 }"""
 
 STEALTH_JS = """
@@ -171,6 +179,14 @@ def slug_baslik(link):
     return parca[:1].upper() + parca[1:] if parca else ""
 
 
+TARIH_EKI = re.compile(r"\s\((\d{1,2} \S+ \d{4}|\d{4}-\d{2}-\d{2})\)$")
+
+
+def saf(baslik):
+    """Karşılaştırma için: sondaki tarih ekini at, harfleri sadeleştir."""
+    return ascii_katla(TARIH_EKI.sub("", baslik or "")).strip()
+
+
 def sure_yazi(saniye):
     dk = int(saniye // 60)
     return f"{dk // 60} sa {dk % 60} dk" if dk >= 60 else f"{dk} dk"
@@ -202,10 +218,15 @@ def durum_yukle():
         try:
             d = json.loads(DURUM_DOSYASI.read_text(encoding="utf-8"))
             if d.get("surum") == 2:
+                if d.get("yapi_surumu") != YAPI_SURUMU:
+                    for s in d.get("sayfalar", {}).values():
+                        s["baz_alindi"] = False
+                    d["yapi_surumu"] = YAPI_SURUMU
                 return d
         except Exception as e:
             log(f"durum.json okunamadı, sıfırdan başlıyorum: {e}")
-    return {"surum": 2, "gorulen": {}, "sayfalar": {}, "son_rapor": None, "kurulum_bildirildi": False}
+    return {"surum": 2, "yapi_surumu": YAPI_SURUMU, "gorulen": {}, "sayfalar": {},
+            "son_rapor": None, "kurulum_bildirildi": False}
 
 
 def durum_yaz(durum):
@@ -295,43 +316,47 @@ def sayfa_oku(sayfa, url):
     if kod in (404, 410):
         raise SayfaYok(f"HTTP {kod}")
 
-    # 2) Yeni site içeriği JavaScript ile sonradan yüklüyor: linkler gelene kadar bekle
+    # 2) İçerik JavaScript ile sonradan geliyor: kartlar görünene kadar bekle
     try:
         sayfa.wait_for_function(JS_HAZIR, arg=DESEN, timeout=25000, polling=500)
     except PWTimeout:
         pass
 
-    # 3) Liste tamamen dolsun: link sayısı sabitlenene kadar bekle
+    # 3) Liste tamamen dolsun: kart sayısı iki ölçümde aynı kalana kadar bekle
     onceki = -1
-    for _ in range(8):
+    for _ in range(10):
         n = sayfa.evaluate(JS_SAY, DESEN)
-        if n == onceki:
+        if n == onceki and n > 0:
             break
         onceki = n
-        sayfa.wait_for_timeout(1200)
+        sayfa.wait_for_timeout(1500)
 
-    veri = sayfa.evaluate(JS_TOPLA, DESEN)
     ogeler = {}
-    for l in veri["linkler"]:
-        anahtar = link_normalle(l["href"])
+    for k in sayfa.evaluate(JS_TOPLA, DESEN):
+        baslik = (k["baslik"] or "").strip()[:200]
+        if k["link"]:
+            anahtar = link_normalle(k["link"])
+        elif k["slug"]:
+            anahtar = f"{SITE}/duyurular/{k['slug']}"
+        else:
+            anahtar = f"baslik:{baslik}" if len(baslik) >= 5 else None
         if not anahtar:
             continue
-        metin = (l["metin"] or "").strip()[:160]
-        if len(metin) < 15:  # başlık okunamadıysa linkten üret
-            metin = slug_baslik(anahtar) or metin
-        if len(metin) > len(ogeler.get(anahtar, "")):
-            ogeler[anahtar] = metin
-        else:
-            ogeler.setdefault(anahtar, metin)
-    if ogeler:
-        return ogeler, "link"
+        if not baslik:
+            baslik = slug_baslik(anahtar)
+        if k.get("tarih"):
+            baslik = f"{baslik} ({k['tarih']})" if baslik else k["tarih"]
+        if len(baslik) > len(ogeler.get(anahtar, "")):
+            ogeler[anahtar] = baslik
 
-    # 4) Yedek mod: link yapısı tanınmazsa sayfadaki başlıkları takip et
-    basliklar = list(dict.fromkeys(t[:160] for t in veri["basliklar"]))
-    if basliklar:
-        return {f"baslik:{t}": t for t in basliklar}, "yedek"
+    # Aynı duyuru hem kartla hem sade başlıkla geldiyse sade olanı at
+    gercek = {saf(v) for k, v in ogeler.items() if not k.startswith("baslik:")}
+    ogeler = {k: v for k, v in ogeler.items() if not (k.startswith("baslik:") and saf(k[7:]) in gercek)}
 
-    raise RuntimeError(f"İçerik bulunamadı (HTTP {kod}, sayfa başlığı: {(sayfa.title() or '-')[:50]})")
+    if not ogeler:
+        raise RuntimeError(f"İçerik bulunamadı (HTTP {kod}, sayfa başlığı: {(sayfa.title() or '-')[:50]})")
+    duyuru_sayisi = sum(1 for k in ogeler if not k.startswith("baslik:"))
+    return ogeler, ("kart" if duyuru_sayisi else "yedek")
 
 
 def debug_kaydet(sayfa, ad, etiket):
@@ -363,7 +388,11 @@ class Pusu:
     def isle(self, ad, url, ogeler):
         s, gorulen = self.s(ad), self.durum["gorulen"]
         zaman = simdi().isoformat(timespec="seconds")
-        yeniler = {k: v for k, v in ogeler.items() if k not in gorulen}
+        bilinen_basliklar = {saf(x.get("baslik")) for x in gorulen.values()} - {""}
+        yeniler = {k: v for k, v in ogeler.items() if k not in gorulen and saf(v) not in bilinen_basliklar}
+        for k, v in ogeler.items():  # başlığı bilinen ama anahtarı yeni olanları sessizce ekle
+            if k not in gorulen and k not in yeniler:
+                gorulen[k] = {"baslik": v, "ilk": zaman, "sayfa": ad}
         guncellendi = False
         for k, v in ogeler.items():
             if k in gorulen and v and v != gorulen[k].get("baslik"):
@@ -457,7 +486,8 @@ class Pusu:
     def kurulum_bildir(self):
         if self.durum.get("kurulum_bildirildi") == KURULUM_SURUMU or not self.s(ZORUNLU_SAYFA)["baz_alindi"]:
             return False
-        ornek = [v for v in self.son_ogeler.get(ZORUNLU_SAYFA, {}).values() if v][:5]
+        ornek = [v for k, v in self.son_ogeler.get(ZORUNLU_SAYFA, {}).items()
+                 if v and not k.startswith("baslik:")][:5]
         satirlar = "\n".join(f"• {t}" for t in ornek) or "• (başlık okunamadı)"
         bildirim(f"Takipte {len(self.durum['gorulen'])} kayıt var. Sitede gördüğüm ilk duyurular:\n\n"
                  f"{satirlar}\n\nBunlar sitedekiyle aynıysa her şey yolunda.",
@@ -513,11 +543,12 @@ class Pusu:
 
             self.son_sonuc[ad] = True
             self.son_ogeler[ad] = ogeler
-            ozet.append(f"{ad}: {len(ogeler)}" + (" (yedek mod)" if mod == "yedek" else ""))
+            ozet.append(f"{ad}: {sum(1 for k in ogeler if not k.startswith('baslik:'))} duyuru"
+                        + (" (yedek mod)" if mod == "yedek" else ""))
             if ad not in self.ilk_okuma_yapildi:
                 self.ilk_okuma_yapildi.add(ad)
                 log(f"{ad} okundu ({mod} modu), bulunanlar:")
-                for k, v in list(ogeler.items())[:15]:
+                for k, v in list(ogeler.items())[:30]:
                     log(f"   • {v[:70]}  →  {k}")
                 debug_kaydet(sayfa, ad, "ok")
             degisti |= self.basarili(ad)
