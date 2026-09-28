@@ -2,22 +2,22 @@
  "surum": 2,
  "gorulen": {
   "https://tvgfbf.gov.tr/duyurular/yeterlilik-belgesi-i-slemleri-nasil-yapilir": {
-   "baslik": "YETERLİLİK",
+   "baslik": "İSTANBUL 1./2. KADEME Antrenör Kurs Duyurusu (Yüz Yüze)",
    "ilk": "2026-09-28T16:33:59+03:00",
    "sayfa": "Duyurular"
   },
   "https://tvgfbf.gov.tr/seminerler/2026-antrenor-vize-gelisim-semineri": {
-   "baslik": "Seminer 31 Ocak 2026 İstanbul 2026 Antrenör Vize Gelişim Semineri Türkiye Vücut Geliştirme ve Fitness Federasyonu olarak, Vizyon 2026 kapsamında \"Sağlıklı Toplu",
+   "baslik": "2026 Antrenör Vize Gelişim Semineri",
    "ilk": "2026-09-28T16:34:02+03:00",
    "sayfa": "Kurslar"
   },
   "https://tvgfbf.gov.tr/etkinlikler/sivas-2-kademe-kurs-duyurusu": {
-   "baslik": "Kurs 16 Ocak 2026 SİVAS 2. Kademe Kurs Duyurusu Federasyonumuz Antrenörlük Kurs ücretlerimiz sadece; başvuru yapan kişilerin referans kodu geldikten sonra gelen",
+   "baslik": "SİVAS 2. Kademe Kurs Duyurusu",
    "ilk": "2026-09-28T16:34:02+03:00",
    "sayfa": "Kurslar"
   },
   "https://tvgfbf.gov.tr/etkinlikler/bilek-guresi-aday-hakem-kursu-16-17-18-ocak-kocaeli": {
-   "baslik": "Kurs 16 Ocak 2026 BİLEK GÜREŞİ ADAY HAKEM KURSU 16-17-18 OCAK KOCAELİ KURS YERİ : BAŞİSKELE SPOR SALONU (Karşıyaka, Maket Sk. No:7, 41275 Başiskele/Kocaeli) İST",
+   "baslik": "BİLEK GÜREŞİ ADAY HAKEM KURSU 16-17-18 OCAK KOCAELİ",
    "ilk": "2026-09-28T16:34:02+03:00",
    "sayfa": "Kurslar"
   },
@@ -46,19 +46,19 @@
   "Duyurular": {
    "baz_alindi": true,
    "kor": false,
-   "son_basari": "2026-09-28T16:33:59+03:00"
+   "son_basari": "2026-09-28T16:47:27+03:00"
   },
   "Kurslar": {
    "baz_alindi": true,
    "kor": false,
-   "son_basari": "2026-09-28T16:34:02+03:00"
+   "son_basari": "2026-09-28T16:47:30+03:00"
   },
   "Anasayfa": {
    "baz_alindi": true,
    "kor": false,
-   "son_basari": "2026-09-28T16:34:05+03:00"
+   "son_basari": "2026-09-28T16:47:33+03:00"
   }
  },
  "son_rapor": "2026-09-28",
- "kurulum_bildirildi": true
+ "kurulum_bildirildi": 3
 }
