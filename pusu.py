@@ -47,6 +47,7 @@ TOPLU_ESIK = 6                         # aynı anda bundan fazla yeni kayıt = s
 GUNLUK_RAPOR_SAATI = 9                 # her sabah bu saatten sonra "nöbetteyim" mesajı
 KAYNAK_ENGELLE = True                  # resim/font/video indirme (hız)
 MAKS_KAYIT = 3000
+KURULUM_SURUMU = 3  # değişince "AKTİF" mesajı bir kez tekrar gelir
 
 DURUM_DOSYASI = Path("durum.json")
 DEBUG = Path("debug")
@@ -71,18 +72,39 @@ JS_HAZIR = """(desen) => {
   return false;
 }"""
 
-JS_TOPLA = r"""() => {
+JS_TOPLA = r"""(desen) => {
+  const re = new RegExp(desen, 'i');
   const temiz = s => (s || '').replace(/\s+/g, ' ').trim();
+  const BASLIK = 'h1,h2,h3,h4,h5,h6,[class*="title"],[class*="Title"],[class*="baslik"],[class*="heading"]';
+  const tarihMi = t => /^\d{1,4}[.\-\/ ]\d{1,2}[.\-\/ ]\d{1,4}/.test(t) || /^\d+ (ocak|şubat|mart|nisan|mayıs|haziran|temmuz|ağustos|eylül|ekim|kasım|aralık)/i.test(t);
+
+  // Linkin kartını bul: yukarı çık, başka bir duyuru linki içermeyen en geniş kutu
+  const kartBul = a => {
+    const kendi = a.href.split('#')[0];
+    let kart = a, el = a;
+    for (let i = 0; i < 7 && el.parentElement; i++) {
+      el = el.parentElement;
+      const baska = [...el.querySelectorAll('a[href]')].some(x => re.test(x.href) && x.href.split('#')[0] !== kendi);
+      if (baska) break;
+      kart = el;
+    }
+    return kart;
+  };
+
   const linkler = [];
   for (const a of document.querySelectorAll('a[href]')) {
-    let metin = temiz(a.innerText || a.textContent) || temiz(a.getAttribute('title')) || temiz(a.getAttribute('aria-label'));
-    if (metin.length < 6) {
-      const kart = a.closest('article, li, [class*="card"], [class*="item"], [class*="post"], [class*="news"]');
-      const h = kart && kart.querySelector('h1,h2,h3,h4,h5,h6,[class*="title"],[class*="baslik"]');
-      if (h) metin = temiz(h.innerText);
-    }
-    linkler.push({href: a.href, metin});
+    if (!re.test(a.href)) { linkler.push({href: a.href, metin: ''}); continue; }
+    const kart = kartBul(a);
+    const aday = [];
+    for (const h of [...a.querySelectorAll(BASLIK), ...kart.querySelectorAll(BASLIK)]) aday.push(temiz(h.innerText));
+    aday.push(temiz(a.getAttribute('title')), temiz(a.getAttribute('aria-label')));
+    const img = a.querySelector('img[alt]'); if (img) aday.push(temiz(img.alt));
+    for (const satir of (kart.innerText || '').split('\n')) aday.push(temiz(satir));
+    aday.push(temiz(a.innerText));
+    const iyi = aday.find(t => t.length >= 15 && t.length <= 250 && !tarihMi(t));
+    linkler.push({href: a.href, metin: iyi || aday.filter(Boolean).sort((x, y) => y.length - x.length)[0] || ''});
   }
+
   const basliklar = [];
   const kok = document.querySelector('main') || document.body;
   if (kok) for (const h of kok.querySelectorAll('h2,h3,h4,h5')) {
@@ -140,6 +162,13 @@ def link_normalle(href):
         return None
     sorgu = "&".join(x for x in u.query.split("&") if x and not x.lower().startswith("utm_"))
     return urlunparse(("https", ALAN_ADI, "/" + "/".join(parcalar), "", sorgu, ""))
+
+
+def slug_baslik(link):
+    from urllib.parse import unquote
+    parca = unquote(urlparse(link).path.rstrip("/").split("/")[-1])
+    parca = re.sub(r"[-_]+", " ", parca).strip()
+    return parca[:1].upper() + parca[1:] if parca else ""
 
 
 def sure_yazi(saniye):
@@ -281,13 +310,15 @@ def sayfa_oku(sayfa, url):
         onceki = n
         sayfa.wait_for_timeout(1200)
 
-    veri = sayfa.evaluate(JS_TOPLA)
+    veri = sayfa.evaluate(JS_TOPLA, DESEN)
     ogeler = {}
     for l in veri["linkler"]:
         anahtar = link_normalle(l["href"])
         if not anahtar:
             continue
-        metin = (l["metin"] or "")[:160]
+        metin = (l["metin"] or "").strip()[:160]
+        if len(metin) < 15:  # başlık okunamadıysa linkten üret
+            metin = slug_baslik(anahtar) or metin
         if len(metin) > len(ogeler.get(anahtar, "")):
             ogeler[anahtar] = metin
         else:
@@ -333,6 +364,11 @@ class Pusu:
         s, gorulen = self.s(ad), self.durum["gorulen"]
         zaman = simdi().isoformat(timespec="seconds")
         yeniler = {k: v for k, v in ogeler.items() if k not in gorulen}
+        guncellendi = False
+        for k, v in ogeler.items():
+            if k in gorulen and v and v != gorulen[k].get("baslik"):
+                gorulen[k]["baslik"] = v
+                guncellendi = True
 
         if not s["baz_alindi"]:
             for k, v in ogeler.items():
@@ -342,7 +378,7 @@ class Pusu:
             return True
 
         if not yeniler:
-            return False
+            return guncellendi
 
         if len(yeniler) > TOPLU_ESIK:
             ozet = "\n".join(f"• {v or k}" for k, v in list(yeniler.items())[:5])
@@ -419,14 +455,14 @@ class Pusu:
 
     # ── bilgilendirme mesajları ──
     def kurulum_bildir(self):
-        if self.durum.get("kurulum_bildirildi") or not self.s(ZORUNLU_SAYFA)["baz_alindi"]:
+        if self.durum.get("kurulum_bildirildi") == KURULUM_SURUMU or not self.s(ZORUNLU_SAYFA)["baz_alindi"]:
             return False
-        ornek = [v for v in self.son_ogeler.get(ZORUNLU_SAYFA, {}).values() if v][:3]
+        ornek = [v for v in self.son_ogeler.get(ZORUNLU_SAYFA, {}).values() if v][:5]
         satirlar = "\n".join(f"• {t}" for t in ornek) or "• (başlık okunamadı)"
         bildirim(f"Takipte {len(self.durum['gorulen'])} kayıt var. Sitede gördüğüm ilk duyurular:\n\n"
                  f"{satirlar}\n\nBunlar sitedekiyle aynıysa her şey yolunda.",
                  baslik="PUSU v2 AKTİF", oncelik=3, etiketler=["white_check_mark", "muscle"])
-        self.durum["kurulum_bildirildi"] = True
+        self.durum["kurulum_bildirildi"] = KURULUM_SURUMU
         self.durum["son_rapor"] = simdi().date().isoformat()  # aynı gün rapor tekrarlamasın
         return True
 
@@ -465,79 +501,4 @@ class Pusu:
                     log(f"{ad}: {e} → bu sayfa sitede yok, bu çalışmada atlanıyor")
                     self.devre_disi.add(ad)
                 continue
-            except Exception as e:
-                sebep = str(e).strip().splitlines()[0][:150] if str(e).strip() else type(e).__name__
-                degisti |= self.basarisiz(ad, sebep)
-                self.son_sonuc[ad] = False
-                ozet.append(f"{ad}: HATA")
-                n = self.hata_sayisi[ad]
-                if not sayfa.is_closed() and (n in (1, 5) or n % 25 == 0):
-                    debug_kaydet(sayfa, ad, "hata")
-                continue
-
-            self.son_sonuc[ad] = True
-            self.son_ogeler[ad] = ogeler
-            ozet.append(f"{ad}: {len(ogeler)}" + (" (yedek mod)" if mod == "yedek" else ""))
-            if ad not in self.ilk_okuma_yapildi:
-                self.ilk_okuma_yapildi.add(ad)
-                log(f"{ad} okundu ({mod} modu), bulunanlar:")
-                for k, v in list(ogeler.items())[:15]:
-                    log(f"   • {v[:70]}  →  {k}")
-                debug_kaydet(sayfa, ad, "ok")
-            degisti |= self.basarili(ad)
-            degisti |= self.isle(ad, url, ogeler)
-
-        self.uyarilari_gonder()
-        degisti |= self.kurulum_bildir()
-        degisti |= self.gunluk_rapor()
-        if degisti:
-            durum_kaydet(self.durum)
-        return ozet
-
-    # ── ana döngü ──
-    def calis(self):
-        baslangic = time.monotonic()
-        with sync_playwright() as p:
-            tarayici, baglam = tarayici_ac(p)
-            sayfa = baglam.new_page()
-            tur_no, tam_hata = 0, 0
-            try:
-                while time.monotonic() - baslangic < MAKS_CALISMA_SN:
-                    tur_no += 1
-                    t0 = time.monotonic()
-                    ozet = self.tur(sayfa)
-                    log(f"Tur {tur_no} | " + " | ".join(ozet) + f" | {time.monotonic() - t0:.0f} sn")
-
-                    tam_hata = tam_hata + 1 if ozet and all("HATA" in x for x in ozet) else 0
-                    if tam_hata and tam_hata % 3 == 0:
-                        log("Üst üste tam başarısız tur, tarayıcı sıfırlanıyor")
-                        try:
-                            tarayici.close()
-                        except Exception:
-                            pass
-                        tarayici, baglam = tarayici_ac(p)
-                        sayfa = baglam.new_page()
-                    elif sayfa.is_closed():
-                        sayfa = baglam.new_page()
-
-                    time.sleep(max(5, TUR_ARALIGI_SN - (time.monotonic() - t0)))
-                log("Maksimum çalışma süresi doldu, temiz kapanış")
-            finally:
-                durum_yaz(self.durum)
-                try:
-                    tarayici.close()
-                except Exception:
-                    pass
-
-
-def _durdur(signum, frame):
-    raise KeyboardInterrupt
-
-
-if __name__ == "__main__":
-    signal.signal(signal.SIGTERM, _durdur)
-    log(f"PUSU v2 başlıyor | kanal: {NTFY_KANAL} | sayfalar: {', '.join(SAYFALAR)}")
-    try:
-        Pusu().calis()
-    except KeyboardInterrupt:
-        log("Durduruldu (yeni çalışma devraldı), hafıza kaydedildi")
+                                                            
