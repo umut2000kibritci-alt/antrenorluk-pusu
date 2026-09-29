@@ -39,7 +39,11 @@ HARIC_PARCALAR = {"sayfa", "page", "kategori", "category", "etiket", "tag", "ars
 # Başlıkta bunlar geçerse en yüksek öncelikle (5) gelir, diğerleri 4
 ONEMLI_KELIMELER = ["kurs", "kademe", "antrenor", "seminer", "vize", "on kayit", "fitness"]
 
-TUR_ARALIGI_SN = 45                    # iki tur başlangıcı arası
+TUR_ARALIGI_SN = 60                    # Duyurular her turda (dakikada bir) okunur
+SAYFA_ARALIGI_SN = {"Kurslar": 5 * 60, "Anasayfa": 10 * 60}  # yan sayfalar daha seyrek (siteyi yorma)
+AG_HATALARI = ("ERR_CONNECTION", "ERR_TIMED_OUT", "Timeout", "ERR_EMPTY_RESPONSE",
+               "ERR_ADDRESS_UNREACHABLE", "ERR_NETWORK", "ERR_SOCKET")
+YENI_IP_ESIGI = 3                      # Duyurular art arda bu kadar bağlantı hatası verirse yeni sunucu iste
 MAKS_CALISMA_SN = 5 * 3600 + 40 * 60   # GitHub 6 saat sınırının altında kal
 KOR_DAKIKA = 15                        # bir sayfa bu kadar dk kesintisiz okunamazsa alarm
 KOR_HATIRLATMA_SAAT = 6                # kör kalmaya devam ederse hatırlatma aralığı
@@ -47,7 +51,7 @@ ESKI_GUN = 10                          # bundan eski tarihli kartlar "yeni" say�
 OK_GORUNTU = False                     # True: her çalışmada sağlıklı sayfanın da görüntüsünü al
 TOPLU_ESIK = 6                         # aynı anda bundan fazla yeni kayıt = site yapısı değişti
 GUNLUK_RAPOR_SAATI = 9                 # her sabah bu saatten sonra "nöbetteyim" mesajı
-KAYNAK_ENGELLE = True                  # resim/font/video indirme (hız)
+RESIMLERI_KAPAT = True                 # resimler indirilmez (önbellek bozulmadan)
 MAKS_KAYIT = 3000
 KURULUM_SURUMU = 4  # değişince "AKTİF" mesajı bir kez tekrar gelir
 YAPI_SURUMU = 3     # okuma yöntemi değişince tüm sayfalar sessizce yeniden baz alınır
@@ -286,9 +290,32 @@ def durum_kaydet(durum, mesaj="Pusu durumu güncellendi"):
         log(f"git hatası: {e}")
 
 
+def yeni_calisma_iste():
+    """GitHub'a 'beni yeni bir sunucuda yeniden başlat' der. Yeni sunucu = yeni IP."""
+    token, repo = os.environ.get("GH_TOKEN"), os.environ.get("GITHUB_REPOSITORY")
+    wf_ref = os.environ.get("GITHUB_WORKFLOW_REF", "")  # owner/repo/.github/workflows/main.yml@refs/heads/main
+    if not (token and repo and wf_ref):
+        log("Yeni çalışma istenemedi: GitHub ortam bilgisi yok")
+        return False
+    dosya = wf_ref.split("@")[0].rsplit("/", 1)[-1]
+    try:
+        r = requests.post(f"https://api.github.com/repos/{repo}/actions/workflows/{dosya}/dispatches",
+                          headers={"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json"},
+                          json={"ref": os.environ.get("GITHUB_REF_NAME", "main")}, timeout=20)
+        if r.status_code == 204:
+            log("IP engeli şüphesi → yeni sunucuda yeni çalışma istendi (bu çalışma birazdan kapanacak)")
+            return True
+        log(f"Yeni çalışma isteği reddedildi: {r.status_code} {r.text[:150]}")
+    except Exception as e:
+        log(f"Yeni çalışma isteği hatası: {e}")
+    return False
+
+
 # ══════════════════════════════ TARAYICI ══════════════════════════════
 def tarayici_ac(p):
     argumanlar = ["--disable-blink-features=AutomationControlled", "--no-sandbox", "--disable-dev-shm-usage"]
+    if RESIMLERI_KAPAT:
+        argumanlar.append("--blink-settings=imagesEnabled=false")
     try:
         tarayici = p.chromium.launch(channel="chromium", headless=True, args=argumanlar)  # yeni headless mod
     except Exception:
@@ -303,9 +330,8 @@ def tarayici_ac(p):
         extra_http_headers={"Accept-Language": "tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7"},
     )
     baglam.add_init_script(STEALTH_JS)
-    if KAYNAK_ENGELLE:
-        baglam.route("**/*", lambda r: r.abort() if r.request.resource_type in ("image", "media", "font")
-                     else r.continue_())
+    # Not: baglam.route() kullanılmıyor; kullanılırsa tarayıcı önbelleği kapanır ve site
+    # her ziyarette tüm dosyalarını baştan gönderir (IP engeline yol açan fazla yük).
     log(f"Tarayıcı açıldı (Chromium {tarayici.version})")
     return tarayici, baglam
 
@@ -397,7 +423,11 @@ def debug_kaydet(sayfa, ad, etiket):
 class Pusu:
     def __init__(self):
         self.durum = durum_yukle()
-        self.ilk_hata = {}          # sayfa -> ilk hatanın zamanı (bu çalışmada)
+        self.son_kontrol = {}       # sayfa -> son okuma zamanı (seyrek sayfalar için)
+        self.gordu = False          # bu çalışmada site en az bir kez okundu mu
+        self.ag_hatasi = 0          # Duyurular'da art arda bağlantı hatası
+        self.yeni_ip_istendi = False
+        self.calisma_baslangic = time.monotonic()
         self.hata_sayisi = {}       # sayfa -> art arda hata
         self.devre_disi = set()
         self.ilk_okuma_yapildi = set()
@@ -465,8 +495,8 @@ class Pusu:
     # ── başarı / hata takibi ──
     def basarili(self, ad):
         self.hata_sayisi[ad] = 0
-        self.ilk_hata.pop(ad, None)
         s = self.s(ad)
+        degisti = s.pop("hata_baslangic", None) is not None
         s["son_basari"] = simdi().isoformat(timespec="seconds")
         if s.get("kor"):
             try:
@@ -476,20 +506,25 @@ class Pusu:
                 self.duzelen.append(ad)
             s.update(kor=False, kor_baslangic=None, son_kor_bildirim=None)
             return True
-        return False
+        return degisti
 
     def basarisiz(self, ad, sebep):
         self.hata_sayisi[ad] = self.hata_sayisi.get(ad, 0) + 1
-        self.ilk_hata.setdefault(ad, time.monotonic())
-        gecen = time.monotonic() - self.ilk_hata[ad]
-        log(f"{ad}: BAŞARISIZ ({self.hata_sayisi[ad]}. kez, {sure_yazi(gecen)}) - {sebep}")
-        if gecen < KOR_DAKIKA * 60:
-            return False
-
         s, zaman = self.s(ad), simdi()
+        degisti = False
+        if not s.get("hata_baslangic"):          # ilk hata anı: yeni çalışmalar da bunu bilsin
+            s["hata_baslangic"] = zaman.isoformat(timespec="seconds")
+            degisti = True
+        try:
+            gecen = (zaman - datetime.fromisoformat(s["hata_baslangic"])).total_seconds()
+        except Exception:
+            gecen = 0
+        log(f"{ad}: BAŞARISIZ ({self.hata_sayisi[ad]}. kez, {sure_yazi(gecen)}dır) - {sebep}")
+        if gecen < KOR_DAKIKA * 60:
+            return degisti
+
         if not s.get("kor"):
-            s.update(kor=True, kor_baslangic=zaman.isoformat(timespec="seconds"),
-                     son_kor_bildirim=zaman.isoformat(timespec="seconds"))
+            s.update(kor=True, kor_baslangic=s["hata_baslangic"], son_kor_bildirim=zaman.isoformat(timespec="seconds"))
             self.kor_yeni.append(f"• {ad}: {sebep}")
             return True
         try:
@@ -500,7 +535,7 @@ class Pusu:
             s["son_kor_bildirim"] = zaman.isoformat(timespec="seconds")
             self.kor_hatirlat.append(f"• {ad}: {sebep}")
             return True
-        return False
+        return degisti
 
     def uyarilari_gonder(self):
         if self.kor_yeni:
@@ -540,7 +575,8 @@ class Pusu:
             if ad in self.devre_disi:
                 satirlar.append(f"➖ {ad} (sitede yok, atlanıyor)")
             else:
-                satirlar.append(f"{'✅' if self.son_sonuc.get(ad) else '❌'} {ad}")
+                durum_ = self.son_sonuc.get(ad)
+                satirlar.append(f"{'✅' if durum_ else '❔' if durum_ is None else '❌'} {ad}")
         bildirim("Pusu nöbette.\n" + "\n".join(satirlar) + f"\nTakipteki kayıt: {len(self.durum['gorulen'])}",
                  baslik="Günlük kontrol", oncelik=2, etiketler=["eyes"])
         self.durum["son_rapor"] = bugun
@@ -553,6 +589,10 @@ class Pusu:
         for ad, url in SAYFALAR.items():
             if ad in self.devre_disi:
                 continue
+            aralik = SAYFA_ARALIGI_SN.get(ad, 0)
+            if aralik and time.monotonic() - self.son_kontrol.get(ad, -1e9) < aralik:
+                continue
+            self.son_kontrol[ad] = time.monotonic()
             try:
                 ogeler, mod = sayfa_oku(sayfa, url)
             except SayfaYok as e:
@@ -569,6 +609,8 @@ class Pusu:
                 degisti |= self.basarisiz(ad, sebep)
                 self.son_sonuc[ad] = False
                 ozet.append(f"{ad}: HATA")
+                if ad == ZORUNLU_SAYFA:
+                    self.ag_hatasi = self.ag_hatasi + 1 if any(h in sebep for h in AG_HATALARI) else 0
                 n = self.hata_sayisi[ad]
                 if not sayfa.is_closed() and (n in (1, 5) or n % 25 == 0):
                     debug_kaydet(sayfa, ad, "hata")
@@ -576,6 +618,9 @@ class Pusu:
 
             self.son_sonuc[ad] = True
             self.son_ogeler[ad] = ogeler
+            self.gordu = True
+            if ad == ZORUNLU_SAYFA:
+                self.ag_hatasi = 0
             ozet.append(f"{ad}: {sum(1 for k in ogeler if not k.startswith('baslik:'))} duyuru"
                         + (" (yedek mod)" if mod == "yedek" else ""))
             if ad not in self.ilk_okuma_yapildi:
@@ -587,6 +632,13 @@ class Pusu:
                     debug_kaydet(sayfa, ad, "ok")
             degisti |= self.basarili(ad)
             degisti |= self.isle(ad, url, ogeler)
+
+        # Site önce açılıp sonra bağlantı kesildiyse sorun büyük ihtimalle bu sunucunun IP'si:
+        # yeni sunucu iste (ya da 10 dk'dır hiç açılamıyorsa). Çalışma başına en fazla bir kez.
+        calisma_suresi = time.monotonic() - self.calisma_baslangic
+        if (self.ag_hatasi >= YENI_IP_ESIGI and not self.yeni_ip_istendi
+                and (self.gordu or calisma_suresi > 10 * 60)):
+            self.yeni_ip_istendi = yeni_calisma_iste()
 
         self.uyarilari_gonder()
         degisti |= self.kurulum_bildir()
@@ -602,6 +654,7 @@ class Pusu:
             tarayici, baglam = tarayici_ac(p)
             sayfa = baglam.new_page()
             tur_no, tam_hata = 0, 0
+            son_temizlik = time.monotonic()
             try:
                 while time.monotonic() - baslangic < MAKS_CALISMA_SN:
                     tur_no += 1
@@ -620,6 +673,16 @@ class Pusu:
                         sayfa = baglam.new_page()
                     elif sayfa.is_closed():
                         sayfa = baglam.new_page()
+
+                    # Önbellek eski listeyi göstermesin: 10 dk'da bir temizle
+                    if time.monotonic() - son_temizlik > 600:
+                        son_temizlik = time.monotonic()
+                        try:
+                            cdp = baglam.new_cdp_session(sayfa)
+                            cdp.send("Network.clearBrowserCache")
+                            cdp.detach()
+                        except Exception as e:
+                            log(f"Önbellek temizlenemedi: {e}")
 
                     time.sleep(max(5, TUR_ARALIGI_SN - (time.monotonic() - t0)))
                 log("Maksimum çalışma süresi doldu, temiz kapanış")
