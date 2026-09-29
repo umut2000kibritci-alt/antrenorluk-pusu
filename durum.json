@@ -266,21 +266,21 @@
   "Duyurular": {
    "baz_alindi": true,
    "kor": false,
-   "son_basari": "2026-09-29T09:14:15+03:00",
+   "son_basari": "2026-09-29T09:14:59+03:00",
    "kor_baslangic": null,
    "son_kor_bildirim": null
   },
   "Kurslar": {
    "baz_alindi": true,
    "kor": false,
-   "son_basari": "2026-09-29T09:14:18+03:00",
+   "son_basari": "2026-09-29T09:15:03+03:00",
    "kor_baslangic": null,
    "son_kor_bildirim": null
   },
   "Anasayfa": {
    "baz_alindi": true,
    "kor": false,
-   "son_basari": "2026-09-29T09:14:23+03:00",
+   "son_basari": "2026-09-29T09:15:08+03:00",
    "kor_baslangic": null,
    "son_kor_bildirim": null
   }
