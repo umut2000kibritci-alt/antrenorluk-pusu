@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write           # durum.json'ı repoya kaydedebilmek için
+  actions: write            # IP engelinde kendini yeni sunucuda yeniden başlatabilmek için
 
 concurrency:
   group: pusu
@@ -18,6 +19,7 @@ jobs:
     timeout-minutes: 350
     env:
       NTFY_KANAL: ${{ secrets.NTFY_KANAL }}   # secret yoksa koddaki varsayılan kanal kullanılır
+      GH_TOKEN: ${{ github.token }}           # yeni çalışma isteği için (otomatik, ayar gerekmez)
       PYTHONUNBUFFERED: "1"
     steps:
       - uses: actions/checkout@v5
