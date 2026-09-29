@@ -265,10 +265,10 @@
  "sayfalar": {
   "Duyurular": {
    "baz_alindi": true,
-   "kor": false,
-   "son_basari": "2026-09-29T06:31:18+03:00",
-   "kor_baslangic": null,
-   "son_kor_bildirim": null
+   "kor": true,
+   "son_basari": "2026-09-29T06:29:48+03:00",
+   "kor_baslangic": "2026-09-29T06:48:24+03:00",
+   "son_kor_bildirim": "2026-09-29T06:48:24+03:00"
   },
   "Kurslar": {
    "baz_alindi": true,
