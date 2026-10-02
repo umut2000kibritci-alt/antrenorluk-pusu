@@ -266,9 +266,10 @@
   "Duyurular": {
    "baz_alindi": true,
    "kor": false,
-   "son_basari": "2026-10-02T11:44:10+03:00",
+   "son_basari": "2026-10-02T11:45:14+03:00",
    "kor_baslangic": null,
-   "son_kor_bildirim": null
+   "son_kor_bildirim": null,
+   "hata_baslangic": "2026-10-02T11:46:23+03:00"
   },
   "Kurslar": {
    "baz_alindi": true,
