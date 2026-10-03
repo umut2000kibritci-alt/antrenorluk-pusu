@@ -12,12 +12,12 @@
    "sayfa": "Kurslar"
   },
   "https://tvgfbf.gov.tr/etkinlikler/sivas-2-kademe-kurs-duyurusu": {
-   "baslik": "SİVAS 2. Kademe Kurs Duyurusu (16 Ocak 2026)",
+   "baslik": "SİVAS 2. Kademe Kurs Duyurusu",
    "ilk": "2026-09-28T16:34:02+03:00",
    "sayfa": "Kurslar"
   },
   "https://tvgfbf.gov.tr/etkinlikler/bilek-guresi-aday-hakem-kursu-16-17-18-ocak-kocaeli": {
-   "baslik": "BİLEK GÜREŞİ ADAY HAKEM KURSU 16-17-18 OCAK KOCAELİ (16 Ocak 2026)",
+   "baslik": "BİLEK GÜREŞİ ADAY HAKEM KURSU 16-17-18 OCAK KOCAELİ",
    "ilk": "2026-09-28T16:34:02+03:00",
    "sayfa": "Kurslar"
   },
@@ -42,7 +42,7 @@
    "sayfa": "Anasayfa"
   },
   "https://tvgfbf.gov.tr/duyurular/i-stanbul-1-2-kademe-antrenor-kurs-duyurusu-yuz-yuze-yuz-yuze": {
-   "baslik": "İSTANBUL 1./2. KADEME Antrenör Kurs Duyurusu (Yüz Yüze) (23 Eylül 2026)",
+   "baslik": "İSTANBUL 1./2. KADEME Antrenör Kurs Duyurusu (Yüz Yüze) (23 EYLÜL 2026)",
    "ilk": "2026-09-28T16:59:09+03:00",
    "sayfa": "Duyurular"
   },
@@ -52,17 +52,17 @@
    "sayfa": "Duyurular"
   },
   "https://tvgfbf.gov.tr/duyurular/canli-yayindayiz": {
-   "baslik": "CANLI YAYINDAYIZ (23 Eylül 2026)",
+   "baslik": "CANLI YAYINDAYIZ (23 EYLÜL 2026)",
    "ilk": "2026-09-28T16:59:09+03:00",
    "sayfa": "Duyurular"
   },
   "https://tvgfbf.gov.tr/duyurular/18-09-2026-noter-huzurunda-delege-beli-rge-kura-ceki-mi-noter": {
-   "baslik": "18.09.2026 NOTER HUZURUNDA DELEGE BELİRGE KURA ÇEKİMİ NOTER TUTANAĞI (22 Eylül 2026)",
+   "baslik": "18.09.2026 NOTER HUZURUNDA DELEGE BELİRGE KURA ÇEKİMİ NOTER TUTANAĞI (22 EYLÜL 2026)",
    "ilk": "2026-09-28T16:59:09+03:00",
    "sayfa": "Duyurular"
   },
   "https://tvgfbf.gov.tr/duyurular/kamuoyuna-resmi-uyari": {
-   "baslik": "Kamuoyuna Resmi Uyarı (19 Eylül 2026)",
+   "baslik": "Kamuoyuna Resmi Uyarı (19 EYLÜL 2026)",
    "ilk": "2026-09-28T16:59:09+03:00",
    "sayfa": "Duyurular"
   },
@@ -266,21 +266,21 @@
   "Duyurular": {
    "baz_alindi": true,
    "kor": false,
-   "son_basari": "2026-10-03T10:07:39+03:00",
+   "son_basari": "2026-10-03T10:12:40+03:00",
    "kor_baslangic": null,
    "son_kor_bildirim": null
   },
   "Kurslar": {
    "baz_alindi": true,
    "kor": false,
-   "son_basari": "2026-10-03T10:07:42+03:00",
+   "son_basari": "2026-10-03T10:12:42+03:00",
    "kor_baslangic": null,
    "son_kor_bildirim": null
   },
   "Anasayfa": {
    "baz_alindi": true,
    "kor": false,
-   "son_basari": "2026-10-03T10:01:47+03:00",
+   "son_basari": "2026-10-03T10:12:46+03:00",
    "kor_baslangic": null,
    "son_kor_bildirim": null
   }
