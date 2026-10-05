@@ -1163,21 +1163,24 @@
    "kor": false,
    "son_basari": "2026-10-05T17:26:11+03:00",
    "kor_baslangic": null,
-   "son_kor_bildirim": null
+   "son_kor_bildirim": null,
+   "hata_baslangic": "2026-10-05T17:32:31+03:00"
   },
   "Kurslar": {
    "baz_alindi": true,
    "kor": false,
    "son_basari": "2026-10-05T17:25:16+03:00",
    "kor_baslangic": null,
-   "son_kor_bildirim": null
+   "son_kor_bildirim": null,
+   "hata_baslangic": "2026-10-05T17:32:37+03:00"
   },
   "Anasayfa": {
    "baz_alindi": true,
    "kor": false,
    "son_basari": "2026-10-05T17:25:20+03:00",
    "kor_baslangic": null,
-   "son_kor_bildirim": null
+   "son_kor_bildirim": null,
+   "hata_baslangic": "2026-10-05T17:33:17+03:00"
   }
  },
  "son_rapor": "2026-10-05",
