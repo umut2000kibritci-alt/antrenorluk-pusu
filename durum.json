@@ -1161,7 +1161,7 @@
   "Duyurular": {
    "baz_alindi": true,
    "kor": false,
-   "son_basari": "2026-10-05T08:59:31+03:00",
+   "son_basari": "2026-10-05T09:00:31+03:00",
    "kor_baslangic": null,
    "son_kor_bildirim": null
   },
@@ -1180,7 +1180,7 @@
    "son_kor_bildirim": null
   }
  },
- "son_rapor": "2026-10-04",
+ "son_rapor": "2026-10-05",
  "kurulum_bildirildi": 4,
  "yapi_surumu": 3
 }
