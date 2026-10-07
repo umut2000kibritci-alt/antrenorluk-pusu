@@ -1163,7 +1163,8 @@
    "kor": false,
    "son_basari": "2026-10-07T06:32:36+03:00",
    "kor_baslangic": null,
-   "son_kor_bildirim": null
+   "son_kor_bildirim": null,
+   "hata_baslangic": "2026-10-07T06:33:32+03:00"
   },
   "Kurslar": {
    "baz_alindi": true,
