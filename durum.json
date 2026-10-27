@@ -1161,7 +1161,7 @@
   "Duyurular": {
    "baz_alindi": true,
    "kor": false,
-   "son_basari": "2026-10-28T02:24:58+03:00",
+   "son_basari": "2026-10-28T02:29:58+03:00",
    "kor_baslangic": null,
    "son_kor_bildirim": null
   },
@@ -1170,7 +1170,8 @@
    "kor": false,
    "son_basari": "2026-10-28T02:25:01+03:00",
    "kor_baslangic": null,
-   "son_kor_bildirim": null
+   "son_kor_bildirim": null,
+   "hata_baslangic": "2026-10-28T02:30:58+03:00"
   },
   "Anasayfa": {
    "baz_alindi": true,
