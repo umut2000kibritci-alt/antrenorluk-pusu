@@ -7,19 +7,19 @@ on:
 
 permissions:
   contents: write           # durum.json'ı repoya kaydedebilmek için
-  actions: write            # IP engelinde kendini yeni sunucuda yeniden başlatabilmek için
+  actions: write            # engelde kendini yeni sunucuda yeniden başlatabilmek için
 
 concurrency:
   group: pusu
-  cancel-in-progress: true  # yeni çalışma gelince eskisi kapanır (her seferinde temiz IP)
+  cancel-in-progress: true  # yeni çalışma gelince eskisi kapanır
 
 jobs:
   pusu:
     runs-on: ubuntu-latest
     timeout-minutes: 350
     env:
-      NTFY_KANAL: ${{ secrets.NTFY_KANAL }}   # secret yoksa koddaki varsayılan kanal kullanılır
-      GH_TOKEN: ${{ github.token }}           # yeni çalışma isteği için (otomatik, ayar gerekmez)
+      NTFY_KANAL: ${{ secrets.NTFY_KANAL }}   # zorunlu: Settings → Secrets and variables → Actions
+      GH_TOKEN: ${{ github.token }}           # yeni çalışma isteği için (otomatik)
       PYTHONUNBUFFERED: "1"
     steps:
       - uses: actions/checkout@v5
@@ -32,7 +32,8 @@ jobs:
       - name: Kütüphaneleri Yükle
         run: |
           pip install --upgrade requests playwright
-          python -m playwright install --with-deps chromium
+          # Tarayıcı sadece yedek yol (doğrulama sayfası çıkarsa) için; kurulamazsa nöbet yine başlar
+          python -m playwright install --with-deps chromium || echo "::warning::Chromium kurulamadı, yedek yol kapalı"
 
       - name: Git Ayarı
         run: |
@@ -45,14 +46,14 @@ jobs:
       - name: Hafızayı Kaydet
         if: always()
         run: |
+          # Asıl kayıt pusu.py içinde (çakışmada anlamca birleştirir). Bu adım sadece yedek.
           git add durum.json 2>/dev/null || true
           if ! git diff --staged --quiet; then
-            git commit -m "Pusu hafızası (kapanış)"
-            git pull --rebase -X theirs origin "${GITHUB_REF_NAME}" || git rebase --abort
-            git push origin "HEAD:${GITHUB_REF_NAME}" || true
+            git commit -q -m "Pusu hafızası (kapanış)"
+            git push -q origin "HEAD:${GITHUB_REF_NAME}" || echo "Push reddedildi (pusu.py zaten kaydetti)"
           fi
 
-      - name: Ekran Görüntülerini Yükle
+      - name: Hata Kayıtlarını Yükle
         if: always()
         uses: actions/upload-artifact@v4
         with:
