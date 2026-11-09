@@ -293,9 +293,7 @@
   "duyurular": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-09T04:59:41+03:00",
-   "son_hata": "api: HTTP 403 | tarayıcı: HTTP 403",
-   "hata_baslangic": "2026-11-09T05:01:49+03:00"
+   "son_basari": "2026-11-09T05:02:49+03:00"
   },
   "etkinlikler": {
    "kor": false,
@@ -313,8 +311,8 @@
   }
  },
  "son_okuma": {
-  "zaman": "2026-11-09T04:59:41+03:00",
-  "yontem": "api",
+  "zaman": "2026-11-09T05:02:49+03:00",
+  "yontem": "tarayici",
   "en_yeni": [
    {
     "baslik": "2026 DÜNYA BİLEK GÜREŞİ ŞAMPİYONASI’NDA TÜRKİYE’DEN TARİHÎ BAŞARI: 78 MADALYA VE DÜNYA ÜÇÜNCÜLÜĞÜ!",
@@ -362,7 +360,7 @@
    0
   ],
   "2026-11-09T05|42548546663": [
-   0,
+   1,
    1
   ]
  },
