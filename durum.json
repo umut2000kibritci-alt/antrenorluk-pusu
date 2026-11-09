@@ -300,22 +300,22 @@
   "duyurular": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-09T14:29:03+03:00"
+   "son_basari": "2026-11-09T14:41:47+03:00"
   },
   "etkinlikler": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-09T14:27:04+03:00"
+   "son_basari": "2026-11-09T14:41:48+03:00"
   },
   "seminerler": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-09T14:27:04+03:00"
+   "son_basari": "2026-11-09T14:41:48+03:00"
   }
  },
  "son_okuma": {
-  "zaman": "2026-11-09T14:29:03+03:00",
-  "yontem": "tarayici",
+  "zaman": "2026-11-09T14:41:47+03:00",
+  "yontem": "api",
   "en_yeni": [
    {
     "baslik": "OLAĞAN MALİ GENEL KURULUMUZ HAKKINDA DUYURU",
@@ -445,6 +445,10 @@
   "2026-11-09T14|42605535178": [
    27,
    1
+  ],
+  "2026-11-09T14|42609604184": [
+   11,
+   0
   ]
  },
  "son_rapor": "2026-11-09",
