@@ -307,22 +307,22 @@
   "duyurular": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-09T17:59:48+03:00"
+   "son_basari": "2026-11-09T18:12:05+03:00"
   },
   "etkinlikler": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-09T17:56:49+03:00"
+   "son_basari": "2026-11-09T18:12:05+03:00"
   },
   "seminerler": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-09T17:56:49+03:00"
+   "son_basari": "2026-11-09T18:12:05+03:00"
   }
  },
  "son_okuma": {
-  "zaman": "2026-11-09T17:59:48+03:00",
-  "yontem": "tarayici",
+  "zaman": "2026-11-09T18:12:05+03:00",
+  "yontem": "api",
   "en_yeni": [
    {
     "baslik": "İSTANBUL 1. KADEME Antrenör Kurs Duyurusu (Yüz Yüze)",
@@ -480,6 +480,10 @@
   "2026-11-09T17|42635391806": [
    28,
    1
+  ],
+  "2026-11-09T18|42640314880": [
+   11,
+   0
   ]
  },
  "son_rapor": "2026-11-09",
