@@ -287,13 +287,20 @@
    "link": "https://tvgfbf.gov.tr/seminerler/2026-antrenor-vize-gelisim-semineri",
    "kategori": "",
    "ilk": "2026-11-09T02:48:47+03:00"
+  },
+  "duyuru:935": {
+   "baslik": "OLAĞAN MALİ GENEL KURULUMUZ HAKKINDA DUYURU",
+   "tarih": "2026-11-09 12:53",
+   "link": "https://tvgfbf.gov.tr/duyurular/olagan-mali-genel-kurulumuz-hakkinda-duyuru",
+   "kategori": "Duyurular",
+   "ilk": "2026-11-09T12:55:46+03:00"
   }
  },
  "kaynaklar": {
   "duyurular": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-09T12:52:46+03:00"
+   "son_basari": "2026-11-09T12:55:46+03:00"
   },
   "etkinlikler": {
    "kor": false,
@@ -307,9 +314,15 @@
   }
  },
  "son_okuma": {
-  "zaman": "2026-11-09T12:52:46+03:00",
+  "zaman": "2026-11-09T12:55:46+03:00",
   "yontem": "api",
   "en_yeni": [
+   {
+    "baslik": "OLAĞAN MALİ GENEL KURULUMUZ HAKKINDA DUYURU",
+    "tarih": "2026-11-09 12:53",
+    "link": "https://tvgfbf.gov.tr/duyurular/olagan-mali-genel-kurulumuz-hakkinda-duyuru",
+    "kategori": "Duyurular"
+   },
    {
     "baslik": "2026 DÜNYA BİLEK GÜREŞİ ŞAMPİYONASI’NDA TÜRKİYE’DEN TARİHÎ BAŞARI: 78 MADALYA VE DÜNYA ÜÇÜNCÜLÜĞÜ!",
     "tarih": "2026-11-06 21:34",
@@ -320,12 +333,6 @@
     "baslik": "ANKARA 1. KADEME (1.GRUP/2. GRUP) Antrenör Kurs Duyurusu (Yüz Yüze)",
     "tarih": "2026-11-05 17:17",
     "link": "https://tvgfbf.gov.tr/duyurular/ankara-1-kademe-1grup2-grup-antrenor-kurs-duyurusu-yuz-yuze",
-    "kategori": "Duyurular"
-   },
-   {
-    "baslik": "ANKARA 2. KADEME Antrenör Kurs Duyurusu (Yüz Yüze)",
-    "tarih": "2026-11-05 17:14",
-    "link": "https://tvgfbf.gov.tr/duyurular/ankara-2-kademe-antrenor-kurs-duyurusu-yuz-yuze",
     "kategori": "Duyurular"
    }
   ]
@@ -424,7 +431,7 @@
    0
   ],
   "2026-11-09T12|42593978433": [
-   22,
+   25,
    0
   ]
  },
