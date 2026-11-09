@@ -307,9 +307,7 @@
   "duyurular": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-09T17:29:52+03:00",
-   "son_hata": "api: HTTP 403 | tarayıcı: HTTP 403",
-   "hata_baslangic": "2026-11-09T17:31:49+03:00"
+   "son_basari": "2026-11-09T17:32:48+03:00"
   },
   "etkinlikler": {
    "kor": false,
@@ -327,8 +325,8 @@
   }
  },
  "son_okuma": {
-  "zaman": "2026-11-09T17:29:52+03:00",
-  "yontem": "api",
+  "zaman": "2026-11-09T17:32:48+03:00",
+  "yontem": "tarayici",
   "en_yeni": [
    {
     "baslik": "İSTANBUL 1. KADEME Antrenör Kurs Duyurusu (Yüz Yüze)",
@@ -484,7 +482,7 @@
    0
   ],
   "2026-11-09T17|42635391806": [
-   0,
+   1,
    1
   ]
  },
