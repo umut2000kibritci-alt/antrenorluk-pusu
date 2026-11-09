@@ -293,21 +293,21 @@
   "duyurular": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-09T06:59:40+03:00"
+   "son_basari": "2026-11-09T07:11:48+03:00"
   },
   "etkinlikler": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-09T06:56:41+03:00"
+   "son_basari": "2026-11-09T07:11:48+03:00"
   },
   "seminerler": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-09T06:56:41+03:00"
+   "son_basari": "2026-11-09T07:11:48+03:00"
   }
  },
  "son_okuma": {
-  "zaman": "2026-11-09T06:59:40+03:00",
+  "zaman": "2026-11-09T07:11:48+03:00",
   "yontem": "api",
   "en_yeni": [
    {
@@ -369,6 +369,10 @@
   ],
   "2026-11-09T06|42556794435": [
    29,
+   0
+  ],
+  "2026-11-09T07|42559420404": [
+   11,
    0
   ]
  },
