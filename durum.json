@@ -300,9 +300,7 @@
   "duyurular": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-09T15:29:53+03:00",
-   "son_hata": "api: HTTP 403 | tarayıcı: HTTP 403",
-   "hata_baslangic": "2026-11-09T15:31:42+03:00"
+   "son_basari": "2026-11-09T15:32:41+03:00"
   },
   "etkinlikler": {
    "kor": false,
@@ -320,8 +318,8 @@
   }
  },
  "son_okuma": {
-  "zaman": "2026-11-09T15:29:53+03:00",
-  "yontem": "api",
+  "zaman": "2026-11-09T15:32:41+03:00",
+  "yontem": "tarayici",
   "en_yeni": [
    {
     "baslik": "OLAĞAN MALİ GENEL KURULUMUZ HAKKINDA DUYURU",
@@ -461,7 +459,7 @@
    0
   ],
   "2026-11-09T15|42617617461": [
-   0,
+   1,
    1
   ]
  },
