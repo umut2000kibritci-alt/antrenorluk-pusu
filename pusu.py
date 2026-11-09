@@ -18,6 +18,7 @@ Ortam değişkenleri: NTFY_KANAL (zorunlu, GitHub Secret), BILDIRIM_ONEKI (test 
 
 import json
 import os
+import re
 import signal
 import subprocess
 import sys
@@ -29,7 +30,7 @@ from zoneinfo import ZoneInfo
 import requests
 
 # ══════════════════════════════ AYARLAR ══════════════════════════════
-NTFY_KANAL = (os.environ.get("NTFY_KANAL") or "").strip()
+NTFY_KANAL = (os.environ.get("NTFY_KANAL") or "").replace("﻿", "").strip()
 BILDIRIM_ONEKI = (os.environ.get("BILDIRIM_ONEKI") or "").strip()
 SITE = "https://tvgfbf.gov.tr"
 
@@ -54,7 +55,7 @@ TOPLU_ESIK = 6                         # aynı anda bundan fazla yeni kayıt = t
 GUNLUK_RAPOR_SAATI = 9
 YENI_IP_ESIGI = 3                      # art arda bu kadar engel/bağlantı hatasında yeni sunucu iste
 ISTATISTIK_KAYIT_SN = 15 * 60          # tur sayaçları en geç bu aralıkla repoya yazılır
-KURULUM_SURUMU = 5                     # değişince "AKTİF" mesajı bir kez gelir
+KURULUM_SURUMU = 6                     # değişince "AKTİF" mesajı bir kez gelir
 DURUM_SURUMU = 3
 
 DURUM_DOSYASI = Path("durum.json")
@@ -600,8 +601,9 @@ class Pusu:
                 mesaj += (f"\n\nEski bot {tarih_yazi(sinir)} sonrasını göremiyordu. O tarihten beri yayınlanan "
                           f"{len(kacan)} kurs/antrenörlük duyurusu:\n" +
                           "\n".join(f"• {tarih_yazi(tarih_coz(v['tarih']))} · {v['baslik'][:90]}" for v in kacan[:10]))
-        bildirim(mesaj, baslik="PUSU v3 AKTİF", oncelik=4, etiketler=["white_check_mark", "muscle"],
-                 link=f"{SITE}/duyurular")
+        if not bildirim(mesaj, baslik="PUSU v3 AKTİF", oncelik=4, etiketler=["white_check_mark", "muscle"],
+                        link=f"{SITE}/duyurular"):
+            return False  # gitmediyse sonraki turda tekrar denenir
         self.durum["kurulum_bildirildi"] = KURULUM_SURUMU
         return True
 
@@ -621,7 +623,7 @@ class Pusu:
             else:
                 satirlar.append(f"✅ {ad}")
         gecikme = f" ({sure_yazi((z - son).total_seconds())} önce)" if son else ""
-        bildirim(f"Sitede şu an gördüğüm en yeni 3 duyuru:\n{self.en_yeni_satirlari()}\n\n"
+        gitti = bildirim(f"Sitede şu an gördüğüm en yeni 3 duyuru:\n{self.en_yeni_satirlari()}\n\n"
                  f"Son başarılı okuma: {tarih_yazi(son, saat=True) if son else 'YOK'}{gecikme}\n"
                  f"Son 24 saat: {ok} başarılı / {hata} başarısız tur\n"
                  f"Okuma yolu: {'doğrudan API' if so.get('yontem') == 'api' else 'tarayıcı (yedek)'}\n"
@@ -629,6 +631,8 @@ class Pusu:
                  "Dokun → duyurular sayfası açılır, en üstteki 3 duyuruyla karşılaştır.",
                  baslik="Günlük kontrol" + (" ⚠️" if hata > ok or any("❌" in s for s in satirlar) else ""),
                  oncelik=2 if ok and hata <= ok else 4, etiketler=["eyes"], link=f"{SITE}/duyurular")
+        if not gitti:
+            return False  # gitmediyse sonraki turda tekrar denenir
         self.durum["son_rapor"] = bugun
         return True
 
@@ -757,9 +761,10 @@ if __name__ == "__main__":
     if "--listele" in sys.argv:
         listele()
         sys.exit(0)
-    if not NTFY_KANAL:
-        log("HATA: NTFY_KANAL tanımlı değil. GitHub → Settings → Secrets and variables → Actions → "
-            "New repository secret → Name: NTFY_KANAL")
+    if not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", NTFY_KANAL):
+        # Değeri loga basmadan sadece biçim bilgisini ver
+        log(f"HATA: NTFY_KANAL {'tanımlı değil' if not NTFY_KANAL else f'geçersiz ({len(NTFY_KANAL)} karakter; sadece harf, rakam, - ve _ olmalı)'}. "
+            "GitHub → Settings → Secrets and variables → Actions → NTFY_KANAL")
         sys.exit(1)
     signal.signal(signal.SIGTERM, _durdur)
     log(f"PUSU v3 başlıyor | kaynaklar: {', '.join(KAYNAKLAR)} | çalışma: {CALISMA_NO}")
