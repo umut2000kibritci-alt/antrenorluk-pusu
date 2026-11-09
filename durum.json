@@ -293,22 +293,22 @@
   "duyurular": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-09T05:17:48+03:00"
+   "son_basari": "2026-11-09T05:28:48+03:00"
   },
   "etkinlikler": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-09T05:16:49+03:00"
+   "son_basari": "2026-11-09T05:26:48+03:00"
   },
   "seminerler": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-09T05:16:49+03:00"
+   "son_basari": "2026-11-09T05:26:48+03:00"
   }
  },
  "son_okuma": {
-  "zaman": "2026-11-09T05:17:48+03:00",
-  "yontem": "tarayici",
+  "zaman": "2026-11-09T05:28:48+03:00",
+  "yontem": "api",
   "en_yeni": [
    {
     "baslik": "2026 DÜNYA BİLEK GÜREŞİ ŞAMPİYONASI’NDA TÜRKİYE’DEN TARİHÎ BAŞARI: 78 MADALYA VE DÜNYA ÜÇÜNCÜLÜĞÜ!",
@@ -356,7 +356,7 @@
    0
   ],
   "2026-11-09T05|42548546663": [
-   16,
+   27,
    1
   ]
  },
