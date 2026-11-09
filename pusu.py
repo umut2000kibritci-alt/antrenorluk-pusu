@@ -54,7 +54,9 @@ ESKI_GUN = 10                          # bundan eski tarihli kayıt "yeni" sayı
 TOPLU_ESIK = 6                         # aynı anda bundan fazla yeni kayıt = tek özet bildirim
 GUNLUK_RAPOR_SAATI = 9
 YENI_IP_ESIGI = 3                      # art arda bu kadar engel/bağlantı hatasında yeni sunucu iste
-ISTATISTIK_KAYIT_SN = 15 * 60          # tur sayaçları en geç bu aralıkla repoya yazılır
+ISTATISTIK_KAYIT_SN = 10 * 60          # tur sayaçları en geç bu aralıkla repoya yazılır
+# cron-job.org her :00 ve :30'da yeni çalışma başlatır, eskisi sert kapanır (kapanış kaydı yetişmeyebilir).
+# Bu yüzden her yarım saatin son dakikasında ayrıca kaydedilir.
 KURULUM_SURUMU = 6                     # değişince "AKTİF" mesajı bir kez gelir
 DURUM_SURUMU = 3
 
@@ -454,6 +456,7 @@ class Pusu:
         self.yeni_ip_istendi = False
         self.son_ist_kayit = time.monotonic()
         self.ist_kirli = False
+        self.son_iptal_oncesi = None
         self.son_ogeler = {}
         self.kor_yeni, self.kor_hatirlat, self.duzelen = [], [], []
         self.tek_tur = tek_tur
@@ -688,9 +691,14 @@ class Pusu:
         self.uyarilari_gonder()
         degisti |= self.kurulum_bildir()
         degisti |= self.gunluk_rapor()
-        if degisti or (self.ist_kirli and time.monotonic() - self.son_ist_kayit > ISTATISTIK_KAYIT_SN):
+        z = simdi()
+        yarim_saat = f"{z:%Y%m%d%H}{z.minute // 30}"
+        iptal_oncesi = z.minute % 30 == 29 and self.son_iptal_oncesi != yarim_saat
+        if degisti or (self.ist_kirli and (iptal_oncesi or time.monotonic() - self.son_ist_kayit > ISTATISTIK_KAYIT_SN)):
             self.durum = durum_kaydet(self.durum)
             self.son_ist_kayit, self.ist_kirli = time.monotonic(), False
+            if iptal_oncesi:
+                self.son_iptal_oncesi = yarim_saat
         return ozet
 
     def ilk_okuma_logu(self):
