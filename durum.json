@@ -307,21 +307,21 @@
   "duyurular": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-10T07:59:30+03:00"
+   "son_basari": "2026-11-10T09:01:54+03:00"
   },
   "etkinlikler": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-10T07:57:30+03:00"
+   "son_basari": "2026-11-10T09:01:54+03:00"
   },
   "seminerler": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-10T07:57:31+03:00"
+   "son_basari": "2026-11-10T09:01:54+03:00"
   }
  },
  "son_okuma": {
-  "zaman": "2026-11-10T07:59:30+03:00",
+  "zaman": "2026-11-10T09:01:54+03:00",
   "yontem": "api",
   "en_yeni": [
    {
@@ -596,9 +596,13 @@
   "2026-11-10T07|42756311316": [
    28,
    0
+  ],
+  "2026-11-10T09|42765672109": [
+   1,
+   0
   ]
  },
- "son_rapor": "2026-11-09",
+ "son_rapor": "2026-11-10",
  "kurulum_bildirildi": 6,
  "baz_alindi": true,
  "gecis": {
