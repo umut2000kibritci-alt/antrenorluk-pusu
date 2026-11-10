@@ -301,27 +301,34 @@
    "link": "https://tvgfbf.gov.tr/duyurular/istanbul-1-kademe-antrenor-kurs-duyurusu-yuz-yuze",
    "kategori": "Duyurular",
    "ilk": "2026-11-09T17:27:52+03:00"
+  },
+  "duyuru:937": {
+   "baslik": "İSTANBUL 2. KADEME (1.GRUP/2. GRUP) Antrenör Kurs Duyurusu (Yüz Yüze)",
+   "tarih": "2026-11-09 12:23",
+   "link": "https://tvgfbf.gov.tr/duyurular/istanbul-2-kademe-1grup2-grup-antrenor-kurs-duyurusu-yuz-yuze",
+   "kategori": "Vücut Geliştirme Duyuruları",
+   "ilk": "2026-11-10T12:32:18+03:00"
   }
  },
  "kaynaklar": {
   "duyurular": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-10T12:29:46+03:00"
+   "son_basari": "2026-11-10T12:32:19+03:00"
   },
   "etkinlikler": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-10T12:27:46+03:00"
+   "son_basari": "2026-11-10T12:32:19+03:00"
   },
   "seminerler": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-10T12:27:46+03:00"
+   "son_basari": "2026-11-10T12:32:19+03:00"
   }
  },
  "son_okuma": {
-  "zaman": "2026-11-10T12:29:46+03:00",
+  "zaman": "2026-11-10T12:32:19+03:00",
   "yontem": "api",
   "en_yeni": [
    {
@@ -337,10 +344,10 @@
     "kategori": "Duyurular"
    },
    {
-    "baslik": "2026 DÜNYA BİLEK GÜREŞİ ŞAMPİYONASI’NDA TÜRKİYE’DEN TARİHÎ BAŞARI: 78 MADALYA VE DÜNYA ÜÇÜNCÜLÜĞÜ!",
-    "tarih": "2026-11-06 21:34",
-    "link": "https://tvgfbf.gov.tr/duyurular/2026-dunya-bilek-guresi-sampiyonasinda-turkiyeden-tarihi-basari-78-madalya-ve-dunya-ucunculugu",
-    "kategori": "Duyurular"
+    "baslik": "İSTANBUL 2. KADEME (1.GRUP/2. GRUP) Antrenör Kurs Duyurusu (Yüz Yüze)",
+    "tarih": "2026-11-09 12:23",
+    "link": "https://tvgfbf.gov.tr/duyurular/istanbul-2-kademe-1grup2-grup-antrenor-kurs-duyurusu-yuz-yuze",
+    "kategori": "Vücut Geliştirme Duyuruları"
    }
   ]
  },
@@ -623,6 +630,10 @@
   ],
   "2026-11-10T12|42787135375": [
    28,
+   0
+  ],
+  "2026-11-10T12|42791307864": [
+   1,
    0
   ]
  },
