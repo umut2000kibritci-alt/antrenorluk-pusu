@@ -335,7 +335,7 @@
   "duyurular": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-12T08:59:45+03:00"
+   "son_basari": "2026-11-12T09:00:45+03:00"
   },
   "etkinlikler": {
    "kor": false,
@@ -349,7 +349,7 @@
   }
  },
  "son_okuma": {
-  "zaman": "2026-11-12T08:59:45+03:00",
+  "zaman": "2026-11-12T09:00:45+03:00",
   "yontem": "api",
   "en_yeni": [
    {
@@ -764,9 +764,13 @@
   "2026-11-12T08|43161854099": [
    29,
    0
+  ],
+  "2026-11-12T09|43161854099": [
+   1,
+   0
   ]
  },
- "son_rapor": "2026-11-11",
+ "son_rapor": "2026-11-12",
  "kurulum_bildirildi": 6,
  "baz_alindi": true,
  "gecis": {
