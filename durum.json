@@ -336,13 +336,20 @@
    "link": "https://tvgfbf.gov.tr/duyurular/karaman-12-kademe-antrenor-kurs-duyurusu-yuz-yuze",
    "kategori": "Vücut Geliştirme Duyuruları",
    "ilk": "2026-11-13T17:18:01+03:00"
+  },
+  "duyuru:942": {
+   "baslik": "KAYSERİ 1./2. KADEME Antrenör Kurs Duyurusu (Yüz Yüze)",
+   "tarih": "2026-11-13 17:18",
+   "link": "https://tvgfbf.gov.tr/duyurular/kayseri-12-kademe-antrenor-kurs-duyurusu-yuz-yuze",
+   "kategori": "Vücut Geliştirme Duyuruları",
+   "ilk": "2026-11-13T17:21:01+03:00"
   }
  },
  "kaynaklar": {
   "duyurular": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-13T17:18:02+03:00"
+   "son_basari": "2026-11-13T17:21:02+03:00"
   },
   "etkinlikler": {
    "kor": false,
@@ -356,9 +363,15 @@
   }
  },
  "son_okuma": {
-  "zaman": "2026-11-13T17:18:02+03:00",
+  "zaman": "2026-11-13T17:21:02+03:00",
   "yontem": "api",
   "en_yeni": [
+   {
+    "baslik": "KAYSERİ 1./2. KADEME Antrenör Kurs Duyurusu (Yüz Yüze)",
+    "tarih": "2026-11-13 17:18",
+    "link": "https://tvgfbf.gov.tr/duyurular/kayseri-12-kademe-antrenor-kurs-duyurusu-yuz-yuze",
+    "kategori": "Vücut Geliştirme Duyuruları"
+   },
    {
     "baslik": "KARAMAN 1./2. KADEME Antrenör Kurs Duyurusu (Yüz Yüze)",
     "tarih": "2026-11-13 17:14",
@@ -369,12 +382,6 @@
     "baslik": "BATMAN 1./2. KADEME Antrenör Kurs Duyurusu (Yüz Yüze)",
     "tarih": "2026-11-11 14:32",
     "link": "https://tvgfbf.gov.tr/duyurular/batman-12-kademe-antrenor-kurs-duyurusu-yuz-yuze",
-    "kategori": "Vücut Geliştirme Duyuruları"
-   },
-   {
-    "baslik": "İSTANBUL 2. KADEME Antrenör Kurs Duyurusu (Yüz Yüze)",
-    "tarih": "2026-11-11 14:27",
-    "link": "https://tvgfbf.gov.tr/duyurular/istanbul-2-kademe-antrenor-kurs-duyurusu-yuz-yuze",
     "kategori": "Vücut Geliştirme Duyuruları"
    }
   ]
@@ -789,7 +796,7 @@
    0
   ],
   "2026-11-13T17|43438718492": [
-   17,
+   20,
    0
   ]
  },
