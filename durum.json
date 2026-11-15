@@ -349,25 +349,21 @@
   "duyurular": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-15T19:33:02+03:00"
+   "son_basari": "2026-11-15T19:38:02+03:00"
   },
   "etkinlikler": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-15T19:29:16+03:00",
-   "son_hata": "api: HTTP 403 | tarayıcı: HTTP 403",
-   "hata_baslangic": "2026-11-15T19:32:06+03:00"
+   "son_basari": "2026-11-15T19:38:03+03:00"
   },
   "seminerler": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-15T19:29:16+03:00",
-   "son_hata": "api: HTTP 403 | tarayıcı: HTTP 403",
-   "hata_baslangic": "2026-11-15T19:32:07+03:00"
+   "son_basari": "2026-11-15T19:38:03+03:00"
   }
  },
  "son_okuma": {
-  "zaman": "2026-11-15T19:33:02+03:00",
+  "zaman": "2026-11-15T19:38:02+03:00",
   "yontem": "tarayici",
   "en_yeni": [
    {
@@ -808,7 +804,7 @@
    0
   ],
   "2026-11-15T19|43735865996": [
-   1,
+   6,
    1
   ]
  },
