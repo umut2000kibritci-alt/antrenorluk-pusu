@@ -349,22 +349,22 @@
   "duyurular": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-15T13:29:52+03:00"
+   "son_basari": "2026-11-15T13:41:44+03:00"
   },
   "etkinlikler": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-15T13:26:52+03:00"
+   "son_basari": "2026-11-15T13:41:44+03:00"
   },
   "seminerler": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-15T13:26:52+03:00"
+   "son_basari": "2026-11-15T13:41:44+03:00"
   }
  },
  "son_okuma": {
-  "zaman": "2026-11-15T13:29:52+03:00",
-  "yontem": "tarayici",
+  "zaman": "2026-11-15T13:41:44+03:00",
+  "yontem": "api",
   "en_yeni": [
    {
     "baslik": "KAYSERİ 1./2. KADEME Antrenör Kurs Duyurusu (Yüz Yüze)",
@@ -802,6 +802,10 @@
   "2026-11-15T13|43701983245": [
    28,
    1
+  ],
+  "2026-11-15T13|43704413641": [
+   11,
+   0
   ]
  },
  "son_rapor": "2026-11-15",
