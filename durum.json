@@ -349,27 +349,21 @@
   "duyurular": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-16T13:59:42+03:00",
-   "son_hata": "api: ConnectTimeout | tarayıcı: Page.goto: Timeout 60000ms exceeded.",
-   "hata_baslangic": "2026-11-16T14:03:30+03:00"
+   "son_basari": "2026-11-16T14:13:46+03:00"
   },
   "etkinlikler": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-16T13:56:42+03:00",
-   "son_hata": "api: ConnectTimeout | tarayıcı: Page.goto: Timeout 60000ms exceeded.",
-   "hata_baslangic": "2026-11-16T14:05:01+03:00"
+   "son_basari": "2026-11-16T14:13:46+03:00"
   },
   "seminerler": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-16T13:56:42+03:00",
-   "son_hata": "api: ConnectTimeout | tarayıcı: Page.goto: Timeout 60000ms exceeded.",
-   "hata_baslangic": "2026-11-16T14:06:31+03:00"
+   "son_basari": "2026-11-16T14:13:46+03:00"
   }
  },
  "son_okuma": {
-  "zaman": "2026-11-16T13:59:42+03:00",
+  "zaman": "2026-11-16T14:13:46+03:00",
   "yontem": "api",
   "en_yeni": [
    {
@@ -808,6 +802,10 @@
   "2026-11-16T14|43853938824": [
    0,
    1
+  ],
+  "2026-11-16T14|43855734615": [
+   1,
+   0
   ]
  },
  "son_rapor": "2026-11-16",
