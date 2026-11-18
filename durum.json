@@ -349,26 +349,22 @@
   "duyurular": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-18T23:29:29+03:00"
+   "son_basari": "2026-11-18T23:31:52+03:00"
   },
   "etkinlikler": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-18T23:11:55+03:00",
-   "son_hata": "api: HTTP 403 | tarayıcı: HTTP 403",
-   "hata_baslangic": "2026-11-18T23:25:32+03:00"
+   "son_basari": "2026-11-18T23:31:53+03:00"
   },
   "seminerler": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-18T23:11:55+03:00",
-   "son_hata": "api: HTTP 403 | tarayıcı: HTTP 403",
-   "hata_baslangic": "2026-11-18T23:25:33+03:00"
+   "son_basari": "2026-11-18T23:31:53+03:00"
   }
  },
  "son_okuma": {
-  "zaman": "2026-11-18T23:29:29+03:00",
-  "yontem": "tarayici",
+  "zaman": "2026-11-18T23:31:52+03:00",
+  "yontem": "api",
   "en_yeni": [
    {
     "baslik": "KAYSERİ 1./2. KADEME Antrenör Kurs Duyurusu (Yüz Yüze)",
@@ -802,6 +798,10 @@
   "2026-11-18T23|44390136103": [
    4,
    1
+  ],
+  "2026-11-18T23|44391794636": [
+   1,
+   0
   ]
  },
  "son_rapor": "2026-11-18",
