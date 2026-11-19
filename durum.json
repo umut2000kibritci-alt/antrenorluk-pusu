@@ -349,17 +349,23 @@
   "duyurular": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-19T19:29:57+03:00"
+   "son_basari": "2026-11-19T19:29:57+03:00",
+   "son_hata": "api: HTTP 403 | tarayıcı: HTTP 403",
+   "hata_baslangic": "2026-11-19T19:36:25+03:00"
   },
   "etkinlikler": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-19T19:26:57+03:00"
+   "son_basari": "2026-11-19T19:26:57+03:00",
+   "son_hata": "api: HTTP 403 | tarayıcı: Page.evaluate: Execution context was destroyed, most likely because of a navigation",
+   "hata_baslangic": "2026-11-19T19:36:26+03:00"
   },
   "seminerler": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-19T19:26:58+03:00"
+   "son_basari": "2026-11-19T19:26:58+03:00",
+   "son_hata": "api: HTTP 403 | tarayıcı: HTTP 403",
+   "hata_baslangic": "2026-11-19T19:36:28+03:00"
   }
  },
  "son_okuma": {
@@ -798,6 +804,10 @@
   "2026-11-19T19|44561266813": [
    29,
    0
+  ],
+  "2026-11-19T19|44566927321": [
+   0,
+   1
   ]
  },
  "son_rapor": "2026-11-19",
