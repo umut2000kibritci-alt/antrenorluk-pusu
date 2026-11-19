@@ -349,9 +349,7 @@
   "duyurular": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-19T23:22:52+03:00",
-   "son_hata": "api: HTTP 403 | tarayıcı: HTTP 403",
-   "hata_baslangic": "2026-11-19T23:27:22+03:00"
+   "son_basari": "2026-11-19T23:28:16+03:00"
   },
   "etkinlikler": {
    "kor": false,
@@ -367,8 +365,8 @@
   }
  },
  "son_okuma": {
-  "zaman": "2026-11-19T23:22:52+03:00",
-  "yontem": "api",
+  "zaman": "2026-11-19T23:28:16+03:00",
+  "yontem": "tarayici",
   "en_yeni": [
    {
     "baslik": "KAYSERİ 1./2. KADEME Antrenör Kurs Duyurusu (Yüz Yüze)",
@@ -804,7 +802,7 @@
    0
   ],
   "2026-11-19T23|44608545007": [
-   0,
+   1,
    1
   ]
  },
