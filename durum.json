@@ -343,29 +343,42 @@
    "link": "https://tvgfbf.gov.tr/duyurular/kayseri-12-kademe-antrenor-kurs-duyurusu-yuz-yuze",
    "kategori": "Vücut Geliştirme Duyuruları",
    "ilk": "2026-11-13T17:21:01+03:00"
+  },
+  "duyuru:943": {
+   "baslik": "BİLEK GÜREŞİ ADAY HAKEM KURSU DUYURUSU 27-28-29 Kasım 2026",
+   "tarih": "2026-11-24 12:05",
+   "link": "https://tvgfbf.gov.tr/duyurular/bilek-guresi-aday-hakem-kursu-duyurusu-27-28-29-kasim-2026",
+   "kategori": "Bilek Güreşi Duyuruları",
+   "ilk": "2026-11-24T12:08:47+03:00"
   }
  },
  "kaynaklar": {
   "duyurular": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-24T11:59:45+03:00"
+   "son_basari": "2026-11-24T12:08:47+03:00"
   },
   "etkinlikler": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-24T11:56:45+03:00"
+   "son_basari": "2026-11-24T12:06:47+03:00"
   },
   "seminerler": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-24T11:56:45+03:00"
+   "son_basari": "2026-11-24T12:06:47+03:00"
   }
  },
  "son_okuma": {
-  "zaman": "2026-11-24T11:59:45+03:00",
+  "zaman": "2026-11-24T12:08:47+03:00",
   "yontem": "api",
   "en_yeni": [
+   {
+    "baslik": "BİLEK GÜREŞİ ADAY HAKEM KURSU DUYURUSU 27-28-29 Kasım 2026",
+    "tarih": "2026-11-24 12:05",
+    "link": "https://tvgfbf.gov.tr/duyurular/bilek-guresi-aday-hakem-kursu-duyurusu-27-28-29-kasim-2026",
+    "kategori": "Bilek Güreşi Duyuruları"
+   },
    {
     "baslik": "KAYSERİ 1./2. KADEME Antrenör Kurs Duyurusu (Yüz Yüze)",
     "tarih": "2026-11-13 17:18",
@@ -377,24 +390,10 @@
     "tarih": "2026-11-13 17:14",
     "link": "https://tvgfbf.gov.tr/duyurular/karaman-12-kademe-antrenor-kurs-duyurusu-yuz-yuze",
     "kategori": "Vücut Geliştirme Duyuruları"
-   },
-   {
-    "baslik": "BATMAN 1./2. KADEME Antrenör Kurs Duyurusu (Yüz Yüze)",
-    "tarih": "2026-11-11 14:32",
-    "link": "https://tvgfbf.gov.tr/duyurular/batman-12-kademe-antrenor-kurs-duyurusu-yuz-yuze",
-    "kategori": "Vücut Geliştirme Duyuruları"
    }
   ]
  },
  "istatistik": {
-  "2026-11-22T11|45000795039": [
-   29,
-   0
-  ],
-  "2026-11-22T11|45003140179": [
-   29,
-   0
-  ],
   "2026-11-22T12|45005452448": [
    29,
    0
@@ -789,6 +788,10 @@
   ],
   "2026-11-24T11|45356758445": [
    29,
+   0
+  ],
+  "2026-11-24T12|45361149139": [
+   8,
    0
   ]
  },
