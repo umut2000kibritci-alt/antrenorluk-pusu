@@ -357,29 +357,42 @@
    "link": "https://tvgfbf.gov.tr/duyurular/yalova-12-kademe-antrenor-kurs-duyurusu-yuz-yuze",
    "kategori": "Vücut Geliştirme Duyuruları",
    "ilk": "2026-11-25T17:27:25+03:00"
+  },
+  "duyuru:945": {
+   "baslik": "ANKARA 1./2./3. KADEME Antrenör Kurs Duyurusu (Yüz Yüze)",
+   "tarih": "2026-11-25 17:28",
+   "link": "https://tvgfbf.gov.tr/duyurular/ankara-123-kademe-antrenor-kurs-duyurusu-yuz-yuze",
+   "kategori": "Vücut Geliştirme Duyuruları",
+   "ilk": "2026-11-25T17:33:42+03:00"
   }
  },
  "kaynaklar": {
   "duyurular": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-25T17:29:25+03:00"
+   "son_basari": "2026-11-25T17:33:43+03:00"
   },
   "etkinlikler": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-25T17:27:26+03:00"
+   "son_basari": "2026-11-25T17:31:43+03:00"
   },
   "seminerler": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-25T17:27:26+03:00"
+   "son_basari": "2026-11-25T17:31:43+03:00"
   }
  },
  "son_okuma": {
-  "zaman": "2026-11-25T17:29:25+03:00",
+  "zaman": "2026-11-25T17:33:43+03:00",
   "yontem": "api",
   "en_yeni": [
+   {
+    "baslik": "ANKARA 1./2./3. KADEME Antrenör Kurs Duyurusu (Yüz Yüze)",
+    "tarih": "2026-11-25 17:28",
+    "link": "https://tvgfbf.gov.tr/duyurular/ankara-123-kademe-antrenor-kurs-duyurusu-yuz-yuze",
+    "kategori": "Vücut Geliştirme Duyuruları"
+   },
    {
     "baslik": "YALOVA 1./2. KADEME Antrenör Kurs Duyurusu (Yüz Yüze)",
     "tarih": "2026-11-25 17:20",
@@ -391,12 +404,6 @@
     "tarih": "2026-11-24 12:05",
     "link": "https://tvgfbf.gov.tr/duyurular/bilek-guresi-aday-hakem-kursu-duyurusu-27-28-29-kasim-2026",
     "kategori": "Bilek Güreşi Duyuruları"
-   },
-   {
-    "baslik": "KAYSERİ 1./2. KADEME Antrenör Kurs Duyurusu (Yüz Yüze)",
-    "tarih": "2026-11-13 17:18",
-    "link": "https://tvgfbf.gov.tr/duyurular/kayseri-12-kademe-antrenor-kurs-duyurusu-yuz-yuze",
-    "kategori": "Vücut Geliştirme Duyuruları"
    }
   ]
  },
@@ -795,6 +802,10 @@
   ],
   "2026-11-25T17|45629454674": [
    28,
+   0
+  ],
+  "2026-11-25T17|45634848222": [
+   3,
    0
   ]
  },
