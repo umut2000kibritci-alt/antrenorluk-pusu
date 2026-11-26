@@ -370,22 +370,22 @@
   "duyurular": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-26T15:59:58+03:00"
+   "son_basari": "2026-11-26T16:11:51+03:00"
   },
   "etkinlikler": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-26T15:57:59+03:00"
+   "son_basari": "2026-11-26T16:11:51+03:00"
   },
   "seminerler": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-26T15:57:59+03:00"
+   "son_basari": "2026-11-26T16:11:52+03:00"
   }
  },
  "son_okuma": {
-  "zaman": "2026-11-26T15:59:58+03:00",
-  "yontem": "tarayici",
+  "zaman": "2026-11-26T16:11:51+03:00",
+  "yontem": "api",
   "en_yeni": [
    {
     "baslik": "ANKARA 1./2./3. KADEME Antrenör Kurs Duyurusu (Yüz Yüze)",
@@ -408,14 +408,6 @@
   ]
  },
  "istatistik": {
-  "2026-11-24T15|45389442892": [
-   29,
-   0
-  ],
-  "2026-11-24T15|45394203304": [
-   29,
-   0
-  ],
   "2026-11-24T16|45399082374": [
    29,
    0
@@ -811,6 +803,10 @@
   "2026-11-26T15|45820318158": [
    28,
    1
+  ],
+  "2026-11-26T16|45825012265": [
+   11,
+   0
   ]
  },
  "son_rapor": "2026-11-26",
