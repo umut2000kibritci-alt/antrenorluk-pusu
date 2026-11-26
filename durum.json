@@ -370,7 +370,9 @@
   "duyurular": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-27T00:36:36+03:00"
+   "son_basari": "2026-11-27T00:38:35+03:00",
+   "son_hata": "api: HTTP 403 | tarayıcı: HTTP 403",
+   "hata_baslangic": "2026-11-27T00:39:37+03:00"
   },
   "etkinlikler": {
    "kor": false,
@@ -384,8 +386,8 @@
   }
  },
  "son_okuma": {
-  "zaman": "2026-11-27T00:36:36+03:00",
-  "yontem": "tarayici",
+  "zaman": "2026-11-27T00:38:35+03:00",
+  "yontem": "api",
   "en_yeni": [
    {
     "baslik": "ANKARA 1./2./3. KADEME Antrenör Kurs Duyurusu (Yüz Yüze)",
@@ -813,8 +815,8 @@
    1
   ],
   "2026-11-27T00|45898623069": [
-   5,
-   1
+   7,
+   2
   ]
  },
  "son_rapor": "2026-11-26",
