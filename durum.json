@@ -371,18 +371,22 @@
    "kor": false,
    "baz_alindi": true,
    "son_basari": "2026-11-27T00:38:35+03:00",
-   "son_hata": "api: HTTP 403 | tarayıcı: Page.evaluate: TypeError: Failed to fetch",
+   "son_hata": "api: HTTP 403 | tarayıcı: HTTP 403",
    "hata_baslangic": "2026-11-27T00:39:37+03:00"
   },
   "etkinlikler": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-27T00:36:36+03:00"
+   "son_basari": "2026-11-27T00:36:36+03:00",
+   "son_hata": "api: HTTP 403 | tarayıcı: HTTP 403",
+   "hata_baslangic": "2026-11-27T00:41:36+03:00"
   },
   "seminerler": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-27T00:36:36+03:00"
+   "son_basari": "2026-11-27T00:36:36+03:00",
+   "son_hata": "api: HTTP 403 | tarayıcı: HTTP 403",
+   "hata_baslangic": "2026-11-27T00:41:37+03:00"
   }
  },
  "son_okuma": {
@@ -816,7 +820,7 @@
   ],
   "2026-11-27T00|45898623069": [
    7,
-   3
+   4
   ]
  },
  "son_rapor": "2026-11-26",
