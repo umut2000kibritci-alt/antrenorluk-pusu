@@ -370,17 +370,23 @@
   "duyurular": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-27T09:00:03+03:00"
+   "son_basari": "2026-11-27T09:00:03+03:00",
+   "son_hata": "api: HTTP 403 | tarayıcı: Page.goto: net::ERR_SOCKET_NOT_CONNECTED at https://tvgfbf.gov.tr/duyurular",
+   "hata_baslangic": "2026-11-27T09:02:12+03:00"
   },
   "etkinlikler": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-27T08:58:03+03:00"
+   "son_basari": "2026-11-27T08:58:03+03:00",
+   "son_hata": "api: HTTP 403 | tarayıcı: HTTP 403",
+   "hata_baslangic": "2026-11-27T09:02:14+03:00"
   },
   "seminerler": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-27T08:58:04+03:00"
+   "son_basari": "2026-11-27T08:58:04+03:00",
+   "son_hata": "api: HTTP 403 | tarayıcı: HTTP 403",
+   "hata_baslangic": "2026-11-27T09:02:14+03:00"
   }
  },
  "son_okuma": {
@@ -811,6 +817,10 @@
   "2026-11-27T09|45946228119": [
    1,
    0
+  ],
+  "2026-11-27T09|45949170963": [
+   0,
+   1
   ]
  },
  "son_rapor": "2026-11-27",
