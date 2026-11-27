@@ -384,9 +384,7 @@
   "duyurular": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-27T20:29:55+03:00",
-   "son_hata": "api: HTTP 403 | tarayıcı: HTTP 403",
-   "hata_baslangic": "2026-11-27T20:33:11+03:00"
+   "son_basari": "2026-11-27T20:44:28+03:00"
   },
   "etkinlikler": {
    "kor": false,
@@ -404,8 +402,8 @@
   }
  },
  "son_okuma": {
-  "zaman": "2026-11-27T20:29:55+03:00",
-  "yontem": "api",
+  "zaman": "2026-11-27T20:44:28+03:00",
+  "yontem": "tarayici",
   "en_yeni": [
    {
     "baslik": "GAZİANTEP 1./2. KADEME Antrenör Kurs Duyurusu (Yüz Yüze)",
@@ -845,7 +843,7 @@
    1
   ],
   "2026-11-27T20|46043930581": [
-   0,
+   1,
    1
   ]
  },
