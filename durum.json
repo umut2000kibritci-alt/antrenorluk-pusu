@@ -384,9 +384,7 @@
   "duyurular": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-28T00:20:30+03:00",
-   "son_hata": "api: ConnectionError | tarayıcı: Page.goto: net::ERR_CONNECTION_CLOSED at https://tvgfbf.gov.tr/duyurular",
-   "hata_baslangic": "2026-11-28T00:21:42+03:00"
+   "son_basari": "2026-11-28T00:22:36+03:00"
   },
   "etkinlikler": {
    "kor": false,
@@ -400,8 +398,8 @@
   }
  },
  "son_okuma": {
-  "zaman": "2026-11-28T00:20:30+03:00",
-  "yontem": "api",
+  "zaman": "2026-11-28T00:22:36+03:00",
+  "yontem": "tarayici",
   "en_yeni": [
    {
     "baslik": "GAZİANTEP 1./2. KADEME Antrenör Kurs Duyurusu (Yüz Yüze)",
@@ -837,7 +835,7 @@
    0
   ],
   "2026-11-28T00|46067952485": [
-   15,
+   16,
    1
   ]
  },
