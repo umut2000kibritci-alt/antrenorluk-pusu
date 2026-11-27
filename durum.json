@@ -370,9 +370,7 @@
   "duyurular": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-27T09:00:03+03:00",
-   "son_hata": "api: HTTP 403 | tarayıcı: Page.goto: net::ERR_SOCKET_NOT_CONNECTED at https://tvgfbf.gov.tr/duyurular",
-   "hata_baslangic": "2026-11-27T09:02:12+03:00"
+   "son_basari": "2026-11-27T09:02:46+03:00"
   },
   "etkinlikler": {
    "kor": false,
@@ -390,7 +388,7 @@
   }
  },
  "son_okuma": {
-  "zaman": "2026-11-27T09:00:03+03:00",
+  "zaman": "2026-11-27T09:02:46+03:00",
   "yontem": "tarayici",
   "en_yeni": [
    {
@@ -819,7 +817,7 @@
    0
   ],
   "2026-11-27T09|45949170963": [
-   0,
+   1,
    1
   ]
  },
