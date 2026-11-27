@@ -366,7 +366,7 @@
    "ilk": "2026-11-25T17:33:42+03:00"
   },
   "duyuru:946": {
-   "baslik": "BİLEK GÜREŞİ ADAY HAKEM KURSU İÇİN BİLGİLENDİRME",
+   "baslik": "NEVŞEHİR BİLEK GÜREŞİ ADAY HAKEM KURSU İÇİN BİLGİLENDİRME",
    "tarih": "2026-11-26 01:00",
    "link": "https://tvgfbf.gov.tr/duyurular/bilek-guresi-aday-hakem-kursu-icin-bilgilendirme",
    "kategori": "Bilek Güreşi Duyuruları",
@@ -377,25 +377,25 @@
   "duyurular": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-27T10:59:50+03:00"
+   "son_basari": "2026-11-27T11:05:47+03:00"
   },
   "etkinlikler": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-27T10:56:50+03:00"
+   "son_basari": "2026-11-27T11:01:48+03:00"
   },
   "seminerler": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-27T10:56:50+03:00"
+   "son_basari": "2026-11-27T11:01:48+03:00"
   }
  },
  "son_okuma": {
-  "zaman": "2026-11-27T10:59:50+03:00",
+  "zaman": "2026-11-27T11:05:47+03:00",
   "yontem": "api",
   "en_yeni": [
    {
-    "baslik": "BİLEK GÜREŞİ ADAY HAKEM KURSU İÇİN BİLGİLENDİRME",
+    "baslik": "NEVŞEHİR BİLEK GÜREŞİ ADAY HAKEM KURSU İÇİN BİLGİLENDİRME",
     "tarih": "2026-11-26 01:00",
     "link": "https://tvgfbf.gov.tr/duyurular/bilek-guresi-aday-hakem-kursu-icin-bilgilendirme",
     "kategori": "Bilek Güreşi Duyuruları"
@@ -415,14 +415,6 @@
   ]
  },
  "istatistik": {
-  "2026-11-25T10|45564849955": [
-   29,
-   0
-  ],
-  "2026-11-25T10|45568699722": [
-   29,
-   0
-  ],
   "2026-11-25T11|45574184335": [
    18,
    0
@@ -821,6 +813,10 @@
   ],
   "2026-11-27T10|45958945850": [
    29,
+   0
+  ],
+  "2026-11-27T11|45962431875": [
+   5,
    0
   ]
  },
