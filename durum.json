@@ -385,21 +385,21 @@
    "kor": false,
    "baz_alindi": true,
    "son_basari": "2026-11-27T20:29:55+03:00",
-   "son_hata": "api: ConnectTimeout | tarayıcı: Page.goto: Timeout 60000ms exceeded.",
+   "son_hata": "api: HTTP 403 | tarayıcı: HTTP 403",
    "hata_baslangic": "2026-11-27T20:33:11+03:00"
   },
   "etkinlikler": {
    "kor": false,
    "baz_alindi": true,
    "son_basari": "2026-11-27T20:26:56+03:00",
-   "son_hata": "api: ConnectTimeout | tarayıcı: Page.goto: Timeout 60000ms exceeded.",
+   "son_hata": "api: HTTP 403 | tarayıcı: HTTP 403",
    "hata_baslangic": "2026-11-27T20:34:42+03:00"
   },
   "seminerler": {
    "kor": false,
    "baz_alindi": true,
    "son_basari": "2026-11-27T20:26:56+03:00",
-   "son_hata": "api: ConnectTimeout | tarayıcı: Page.goto: Timeout 60000ms exceeded.",
+   "son_hata": "api: HTTP 403 | tarayıcı: HTTP 403",
    "hata_baslangic": "2026-11-27T20:36:13+03:00"
   }
  },
@@ -841,6 +841,10 @@
    0
   ],
   "2026-11-27T20|46042402010": [
+   0,
+   1
+  ],
+  "2026-11-27T20|46043930581": [
    0,
    1
   ]
