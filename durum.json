@@ -384,9 +384,7 @@
   "duyurular": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-28T07:29:57+03:00",
-   "son_hata": "api: HTTP 403 | tarayıcı: HTTP 403",
-   "hata_baslangic": "2026-11-28T07:31:43+03:00"
+   "son_basari": "2026-11-28T07:32:42+03:00"
   },
   "etkinlikler": {
    "kor": false,
@@ -404,7 +402,7 @@
   }
  },
  "son_okuma": {
-  "zaman": "2026-11-28T07:29:57+03:00",
+  "zaman": "2026-11-28T07:32:42+03:00",
   "yontem": "tarayici",
   "en_yeni": [
    {
@@ -841,7 +839,7 @@
    3
   ],
   "2026-11-28T07|46107877803": [
-   0,
+   1,
    1
   ]
  },
