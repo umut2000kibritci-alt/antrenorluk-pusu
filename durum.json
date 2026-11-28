@@ -385,7 +385,7 @@
    "kor": false,
    "baz_alindi": true,
    "son_basari": "2026-11-28T07:15:56+03:00",
-   "son_hata": "api: HTTP 403 | tarayıcı: HTTP 403",
+   "son_hata": "api: HTTP 403 | tarayıcı: Page.evaluate: TypeError: Failed to fetch",
    "hata_baslangic": "2026-11-28T07:17:00+03:00"
   },
   "etkinlikler": {
@@ -838,7 +838,7 @@
   ],
   "2026-11-28T07|46105527208": [
    15,
-   1
+   2
   ]
  },
  "son_rapor": "2026-11-27",
