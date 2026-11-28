@@ -391,22 +391,22 @@
   "duyurular": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-28T16:29:46+03:00"
+   "son_basari": "2026-11-28T16:41:38+03:00"
   },
   "etkinlikler": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-28T16:26:46+03:00"
+   "son_basari": "2026-11-28T16:41:38+03:00"
   },
   "seminerler": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-28T16:26:47+03:00"
+   "son_basari": "2026-11-28T16:41:38+03:00"
   }
  },
  "son_okuma": {
-  "zaman": "2026-11-28T16:29:46+03:00",
-  "yontem": "tarayici",
+  "zaman": "2026-11-28T16:41:38+03:00",
+  "yontem": "api",
   "en_yeni": [
    {
     "baslik": "Fitness sektörünün hızlı büyümesinin arkasında hangi faktörler var? | Spor 360",
@@ -840,6 +840,10 @@
   "2026-11-28T16|46147467366": [
    28,
    1
+  ],
+  "2026-11-28T16|46149963008": [
+   11,
+   0
   ]
  },
  "son_rapor": "2026-11-28",
