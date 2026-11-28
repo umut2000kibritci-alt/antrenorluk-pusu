@@ -378,13 +378,20 @@
    "link": "https://tvgfbf.gov.tr/duyurular/gaziantep-12-kademe-antrenor-kurs-duyurusu-yuz-yuze",
    "kategori": "Vücut Geliştirme Duyuruları",
    "ilk": "2026-11-27T14:30:07+03:00"
+  },
+  "duyuru:948": {
+   "baslik": "Fitness sektörünün hızlı büyümesinin arkasında hangi faktörler var? | Spor 360",
+   "tarih": "2026-11-28 16:01",
+   "link": "https://tvgfbf.gov.tr/duyurular/fitness-sektorunun-hizli-buyumesinin-arkasinda-hangi-faktorler-var-spor-360",
+   "kategori": "Haberler",
+   "ilk": "2026-11-28T16:04:46+03:00"
   }
  },
  "kaynaklar": {
   "duyurular": {
    "kor": false,
    "baz_alindi": true,
-   "son_basari": "2026-11-28T16:02:46+03:00"
+   "son_basari": "2026-11-28T16:04:46+03:00"
   },
   "etkinlikler": {
    "kor": false,
@@ -402,9 +409,15 @@
   }
  },
  "son_okuma": {
-  "zaman": "2026-11-28T16:02:46+03:00",
+  "zaman": "2026-11-28T16:04:46+03:00",
   "yontem": "tarayici",
   "en_yeni": [
+   {
+    "baslik": "Fitness sektörünün hızlı büyümesinin arkasında hangi faktörler var? | Spor 360",
+    "tarih": "2026-11-28 16:01",
+    "link": "https://tvgfbf.gov.tr/duyurular/fitness-sektorunun-hizli-buyumesinin-arkasinda-hangi-faktorler-var-spor-360",
+    "kategori": "Haberler"
+   },
    {
     "baslik": "GAZİANTEP 1./2. KADEME Antrenör Kurs Duyurusu (Yüz Yüze)",
     "tarih": "2026-11-27 14:24",
@@ -416,12 +429,6 @@
     "tarih": "2026-11-26 01:00",
     "link": "https://tvgfbf.gov.tr/duyurular/bilek-guresi-aday-hakem-kursu-icin-bilgilendirme",
     "kategori": "Bilek Güreşi Duyuruları"
-   },
-   {
-    "baslik": "ANKARA 1./2./3. KADEME Antrenör Kurs Duyurusu (Yüz Yüze)",
-    "tarih": "2026-11-25 17:28",
-    "link": "https://tvgfbf.gov.tr/duyurular/ankara-123-kademe-antrenor-kurs-duyurusu-yuz-yuze",
-    "kategori": "Vücut Geliştirme Duyuruları"
    }
   ]
  },
@@ -835,7 +842,7 @@
    0
   ],
   "2026-11-28T16|46147467366": [
-   1,
+   3,
    1
   ]
  },
